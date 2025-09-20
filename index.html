@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mohamed Hisham Abdelmajid - Junior Mobile Developer</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
+	<style>
+		body {
+			font-family: 'Poppins', sans-serif;
+			scroll-behavior: smooth;
+		}
+		.profile-img {
+			width: 200px;
+			height: 200px;
+			object-fit: cover;
+			border: 5px solid #e2e8f0;
+		}
+		.skill-card { transition: all 0.3s ease; }
+		.skill-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+		.project-card { transition: all 0.3s ease; overflow: hidden; }
+		.project-card:hover { transform: translateY(-5px); }
+		.project-img { transition: all 0.5s ease; }
+		.project-card:hover .project-img { transform: scale(1.05); }
+		.timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 7px; top: 24px; height: 100%; width: 2px; background: #14b8a6; }
+		.nav-link { position: relative; }
+		.nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #14b8a6; transition: width 0.3s ease; }
+		.nav-link:hover::after { width: 100%; }
+	</style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+	<!-- Navigation -->
+	<nav class="fixed w-full bg-white/90 backdrop-blur shadow-sm z-50">
+		<div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+			<a href="#home" class="text-2xl font-bold text-teal-600">Mohamed Hisham</a>
+			<div id="desktopMenu" class="hidden md:flex items-center space-x-8">
+				<a href="#home" class="nav-link py-2">Home</a>
+				<a href="#about" class="nav-link py-2">About</a>
+				<a href="#education" class="nav-link py-2">Education</a>
+				<a href="#experience" class="nav-link py-2">Experience</a>
+				<a href="#skills" class="nav-link py-2">Skills</a>
+				<a href="#projects" class="nav-link py-2">Projects</a>
+				<a href="#testimonials" class="nav-link py-2">Testimonials</a>
+				<a href="#services" class="nav-link py-2">Services</a>
+			</div>
+			<button id="mobileToggle" class="md:hidden focus:outline-none" aria-label="Toggle menu">
+				<i data-feather="menu"></i>
+			</button>
+			<button id="languageToggle" class="md:hidden ml-4 focus:outline-none" aria-label="Toggle language">
+				<span id="languageText">EN</span>
+			</button>
+		</div>
+		<div id="mobileMenu" class="md:hidden hidden px-6 pb-4">
+			<div class="flex flex-col space-y-3 bg-white rounded-md shadow p-4">
+				<a href="#home" class="nav-link py-2">Home</a>
+				<a href="#about" class="nav-link py-2">About</a>
+				<a href="#education" class="nav-link py-2">Education</a>
+				<a href="#experience" class="nav-link py-2">Experience</a>
+				<a href="#skills" class="nav-link py-2">Skills</a>
+				<a href="#projects" class="nav-link py-2">Projects</a>
+				<a href="#testimonials" class="nav-link py-2">Testimonials</a>
+				<a href="#services" class="nav-link py-2">Services</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Hero Section -->
+	<section id="home" class="pt-32 md:pt-40 pb-20 px-6">
+		<div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
+			<div class="md:w-2/3" data-aos="fade-right">
+				<h1 class="text-4xl md:text-5xl font-bold mb-4">Mohamed Hisham Abdelmajid</h1>
+				<h2 class="text-2xl md:text-3xl text-teal-600 mb-6">Junior Mobile Developer</h2>
+				<p class="text-lg text-gray-600 mb-8 max-w-2xl">I'm a mobile app developer who constantly invests in improving myself and my skills. I prioritize writing Clean Code so that any future updates or modifications remain easy and smooth. I use Cubit and GetX for state management to ensure fast, stable, and scalable applications. My goal is always to turn my client's idea into a modern, intuitive, high-performance application.</p>
+				<p class="text-lg text-gray-600 mb-8 max-w-2xl hidden" id="bioArabic">أنا مطوّر تطبيقات بشتغل دايمًا على تطوير نفسي ومهاراتي. بميّز شغلي إني بكتب Clean Code عشان أي تعديل أو تحديث يبقى سهل وسلس. بستخدم Cubit و GetX لإدارة الحالة عشان أضمن إن التطبيق يفضل سريع، مستقر، وقابل للتطوير. هدفي دايمًا إن فكرة العميل تتحوّل لتطبيق عصري، سهل الاستخدام، وبأداء عالي.</p>
+				<div class="flex flex-wrap gap-4">
+					<a href="#projects" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition">View My Work</a>
+				</div>
+			</div>
+			<div class="md:w-1/3 flex justify-center" data-aos="fade-left">
+				<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1758127770/WhatsApp_Image_2025-09-17_at_19.47.27_bbc99243_wzl7ey.jpg" alt="Mohamed Hisham Abdelmajid profile" class="profile-img rounded-full shadow-xl">
+			</div>
+		</div>
+	</section>
+
+	<!-- About Section -->
+	<section id="about" class="py-20 bg-gray-100 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold mb-2">About Me</h2>
+				<p class="text-gray-600" id="aboutSubtitle">Personal Bio</p>
+				<p class="text-gray-600 hidden" id="aboutSubtitleArabic">السيرة الذاتية</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3">
+					<i data-feather="heart" class="text-teal-600"></i>
+					<span>Problem Solving</span>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3 hidden" id="attribute1Arabic">
+					<i data-feather="heart" class="text-teal-600"></i>
+					<span>حل المشكلات</span>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3">
+					<i data-feather="target" class="text-teal-600"></i>
+					<span>Teamwork</span>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3 hidden" id="attribute2Arabic">
+					<i data-feather="target" class="text-teal-600"></i>
+					<span>العمل الجماعي</span>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3">
+					<i data-feather="book-open" class="text-teal-600"></i>
+					<span>Rapid Learning</span>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3 hidden" id="attribute3Arabic">
+					<i data-feather="book-open" class="text-teal-600"></i>
+					<span>التعلم السريع</span>
+				</div>
+			</div>
+			<div class="mt-12" data-aos="fade-up" data-aos-delay="200">
+				<h3 class="text-2xl font-semibold mb-2" id="professionalSummaryTitle">Professional Summary</h3>
+				<p class="text-gray-700 mb-4 hidden" id="professionalSummaryTitleArabic">ملخص مهني</p>
+				<p class="text-gray-700" id="professionalSummary">
+					A professional mobile app developer with experience building Flutter applications while adhering to Clean Code principles for maintainable, scalable codebases. I leverage Cubit and GetX for state management to deliver fast, stable apps. I seek to join development teams that value quality and user experience, aiming to contribute innovative technical solutions that make a real difference for individuals and businesses.
+				</p>
+				<p class="text-gray-700 hidden" id="professionalSummaryArabic">
+					مطور تطبيقات محترف بخبرة في بناء تطبيقات موبايل باستخدام Flutter مع تطبيق معايير Clean Code لضمان سهولة التطوير والتحديث. أستخدم Cubit و GetX لإدارة الحالة وتقديم تطبيقات سريعة ومستقرة. أسعى للانضمام إلى فرق تطوير تهتم بالجودة وتجربة المستخدم، وأطمح إلى المساهمة في بناء حلول تقنية مبتكرة تخدم الأفراد والشركات وتحدث فرقًا حقيقيًا.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Education Section -->
+	<section id="education" class="py-20 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold">Education</h2>
+				<p class="text-gray-600 hidden" id="educationSubtitle">التعليم</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
+					<h3 class="text-xl font-semibold mb-1">Bachelor's in Educational Technology</h3>
+					<p class="text-gray-600 mb-2">Zagazig University • <span class="text-teal-600">2021 – 2026</span></p>
+					<p class="text-gray-700"><span class="font-medium">Major:</span> Computer and Systems</p>
+					<p class="text-gray-700"><span class="font-medium">Grade:</span> Very Good</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="educationArabic">
+					<h3 class="text-xl font-semibold mb-1">بكالوريوس تربية نوعية – قسم تكنولوجيا التعليم</h3>
+					<p class="text-gray-600 mb-2">جامعة الزقازيق • <span class="text-teal-600">2021 – 2026</span></p>
+					<p class="text-gray-700"><span class="font-medium">التخصص:</span> هندسة الحاسبات ونظم</p>
+					<p class="text-gray-700"><span class="font-medium">التقدير:</span> جيد جدًا</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Work Experience Section -->
+	<section id="experience" class="py-20 bg-gray-100 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold">Work Experience</h2>
+				<p class="text-gray-600 hidden" id="experienceSubtitle">الخبرة العملية</p>
+			</div>
+			<div class="max-w-3xl mx-auto relative">
+				<div class="relative" data-aos="fade-up">
+					<div class="timeline-item mb-12 pl-8 relative">
+						<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-teal-600 border-4 border-white z-10"></div>
+						<div class="bg-white p-6 rounded-lg shadow">
+							<h3 class="text-lg font-semibold">Freelance Mobile App Developer | Independent Clients</h3>
+							<p class="text-gray-600 mb-4">2022 – Present</p>
+							<ul class="list-disc pl-5 space-y-2 text-gray-700">
+								<li>Developed Easy Store, an inventory management app with sales, purchasing, supplier tracking, and integrated accounting system.</li>
+								<li>Currently developing Drop Shopping, an e-commerce platform to simplify online selling.</li>
+							</ul>
+						</div>
+					</div>
+					<div class="timeline-item pl-8 relative hidden" id="experienceArabic">
+						<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-teal-600 border-4 border-white z-10"></div>
+						<div class="bg-white p-6 rounded-lg shadow">
+							<h3 class="text-lg font-semibold">مطور تطبيقات جوال حر | عملاء مستقلين</h3>
+							<p class="text-gray-600 mb-4">2022 – الحاضر</p>
+							<ul class="list-disc pl-5 space-y-2 text-gray-700">
+								<li>طورت تطبيق Easy Store لإدارة المخازن يشمل البيع والشراء، الموردين، ونظام محاسبي متكامل.</li>
+								<li>أعمل حاليًا على تطوير تطبيق Drop Shopping للتجارة الإلكترونية (E-commerce) لتسهيل البيع عبر الإنترنت.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills Section -->
+	<section id="skills" class="py-20 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold">Skills & Tools</h2>
+				<p class="text-gray-600 hidden" id="skillsSubtitle">المهارات والأدوات</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
+					<h3 class="text-xl font-semibold mb-4">Professional Skills</h3>
+					<ul class="space-y-2 text-gray-700">
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Problem Solving</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Teamwork</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Time Management</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Effective Communication</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Rapid Learning</li>
+					</ul>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="professionalSkillsArabic">
+					<h3 class="text-xl font-semibold mb-4">المهارات العامة</h3>
+					<ul class="space-y-2 text-gray-700">
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>حل المشكلات</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>العمل الجماعي</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>إدارة الوقت</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>التواصل الفعّال</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>التعلم السريع</li>
+					</ul>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
+					<h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
+					<ul class="space-y-2 text-gray-700">
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Flutter & Dart</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>GetX State Management</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>REST APIs</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Firebase</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Supabase</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQLite</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Git & GitHub</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Android Studio</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>UI/UX Design Basics</li>
+					</ul>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="300" id="technicalSkillsArabic">
+					<h3 class="text-xl font-semibold mb-4">المهارات التقنية</h3>
+					<ul class="space-y-2 text-gray-700">
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Flutter & Dart</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>إدارة الحالة باستخدام GetX</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>واجهات برمجة التطبيقات (REST APIs)</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Firebase</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Supabase</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQLite</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Git & GitHub</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Android Studio</li>
+						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>تصميم واجهات المستخدم (UI/UX)</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Projects Section -->
+	<section id="projects" class="py-20 bg-gray-100 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold">My Projects</h2>
+				<p class="text-gray-600" id="projectsSubtitle">Here are some of the projects I'm proud to have worked on</p>
+				<p class="text-gray-600 hidden" id="projectsSubtitleArabic">هذه بعض المشاريع التي أفتخر بتنفيذها</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div class="project-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up">
+					<img src="https://dkwczobptpbpuahdprgg.supabase.co/storage/v1/object/public/easystroretrail/screen1.png" alt="Easy Store" class="project-img w-full h-48 object-cover">
+					<div class="p-6 space-y-2">
+						<h3 class="text-xl font-semibold">Easy Store</h3>
+						<p class="text-gray-700"><span class="font-medium">Client:</span> Independent Client</p>
+						<p class="text-gray-700"><span class="font-medium">Role:</span> Lead Developer</p>
+						<p class="text-gray-700"><span class="font-medium">Problem:</span> The client needed a system to track fabric inventory by color and quantity, but was manually recording data in Excel. They also needed a complete financial and customer management system accessible anywhere, not just from the office.</p>
+						<p class="text-gray-700"><span class="font-medium">Solution:</span> Built a cross-platform Flutter app (web + mobile) using GetX for state management and Firebase for backend. Implemented a color picker that displays the actual color when typing its name. Integrated full inventory, sales, purchases, accounting, and customer modules.</p>
+						<p class="text-gray-700"><span class="font-medium">Impact:</span> The app reduced manual errors by 90%, improved inventory accuracy, and enabled remote access for the business owner. Now used daily in operations.</p>
+						<div class="flex flex-wrap gap-2 pt-2">
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Flutter</span>
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">GetX</span>
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Firebase</span>
+						</div>
+					</div>
+				</div>
+				<div class="project-card bg-white rounded-lg shadow overflow-hidden hidden" data-aos="fade-up" data-aos-delay="100" id="projectArabic">
+					<img src="https://dkwczobptpbpuahdprgg.supabase.co/storage/v1/object/public/easystroretrail/screen1.png" alt="Easy Store" class="project-img w-full h-48 object-cover">
+					<div class="p-6 space-y-2">
+						<h3 class="text-xl font-semibold">إيزي ستور</h3>
+						<p class="text-gray-700"><span class="font-medium">العميل:</span> عميل مستقل</p>
+						<p class="text-gray-700"><span class="font-medium">الدور:</span> المطور الرئيسي</p>
+						<p class="text-gray-700"><span class="font-medium">المشكلة:</span> كان العميل يواجه صعوبة في تتبع مخزون القماش حسب اللون والكمية باستخدام ملفات Excel، وكان يحتاج نظامًا متكاملًا لإدارة المحاسبة والعملاء، ويمكن الوصول إليه من أي مكان وليس فقط من المكتب.</p>
+						<p class="text-gray-700"><span class="font-medium">الحل:</span> صممت تطبيق Flutter متعدد المنصات (موبايل + ويب) باستخدام GetX لإدارة الحالة وFirebase للخلفية. تم تنفيذ أداة اختيار لون تظهر اللون الحقيقي عند كتابة اسمه. كما تم دمج وحدات شاملة للمخزون، المبيعات، المشتريات، المحاسبة، وإدارة العملاء.</p>
+						<p class="text-gray-700"><span class="font-medium">التأثير:</span> قلل التطبيق الأخطاء اليدوية بنسبة 90%، وحسّن دقة المخزون، ومكن صاحب المشروع من الوصول للتطبيق من أي مكان. يُستخدم الآن يوميًا في العمليات.</p>
+						<div class="flex flex-wrap gap-2 pt-2">
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">فلاتر</span>
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">GetX</span>
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">فايربيس</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonials Section -->
+	<section id="testimonials" class="py-20 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold">Client Testimonials</h2>
+				<p class="text-gray-600 hidden" id="testimonialsSubtitle">آراء العملاء</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
+					<p class="italic text-gray-700">"Working with you was excellent. You delivered the app ahead of schedule with high quality. It runs smoothly and is very easy to use. I'm extremely satisfied with the result."</p>
+					<div class="mt-4 text-sm text-gray-600">Ahmed, Owner of Easy Store</div>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="testimonialArabic">
+					<p class="italic text-gray-700">"التعامل معاك كان ممتاز، سلّمت التطبيق قبل الميعاد وبجودة عالية. التطبيق شغال بسلاسة وسهل الاستخدام، وأنا مبسوط جدًا من النتيجة."</p>
+					<div class="mt-4 text-sm text-gray-600">أحمد، صاحب مشروع إيزي ستور</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Section -->
+	<section id="services" class="py-20 bg-gray-100 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold" id="services_title">Services I Offer</h2>
+				<p class="text-gray-600 hidden" id="services_title_arabic">الخدمات التي أقدمها</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
+					<i data-feather="smartphone" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700" id="service_1">Develop mobile apps with Flutter (Android & iOS)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="service_1_arabic">
+					<i data-feather="smartphone" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700">تطوير تطبيقات موبايل باستخدام Flutter (أندرويد وآيفون)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
+					<i data-feather="layout" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700" id="service_2">Design modern, user-friendly interfaces (UI/UX)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="300" id="service_2_arabic">
+					<i data-feather="layout" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700">تصميم واجهات عصرية وسهلة الاستخدام (واجهة المستخدم وتجربة المستخدم)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="400">
+					<i data-feather="database" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700" id="service_3">Integrate databases (Supabase, Firebase, SQLite)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="500" id="service_3_arabic">
+					<i data-feather="database" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700">ربط التطبيقات بقاعدة بيانات (Supabase / Firebase / SQLite)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="600">
+					<i data-feather="layers" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700" id="service_4">Build custom systems (inventory, accounting, e-commerce)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="700" id="service_4_arabic">
+					<i data-feather="layers" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700">بناء أنظمة مخصصة (مخازن، محاسبة، تجارة إلكترونية)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="800">
+					<i data-feather="refresh-cw" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700" id="service_5">Provide post-launch updates and maintenance</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="900" id="service_5_arabic">
+					<i data-feather="refresh-cw" class="text-teal-600 mb-3"></i>
+					<p class="text-gray-700">تقديم تحديثات وصيانة للتطبيقات بعد التسليم</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section id="cta" class="py-16 bg-teal-600 text-white">
+		<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+			<div data-aos="fade-right">
+				<h3 class="text-2xl md:text-3xl font-semibold" id="cta_title">Ready to Start Your Project?</h3>
+				<p class="text-teal-100" id="cta_subtitle">Let's build something amazing together.</p>
+				<p class="text-teal-100 hidden" id="cta_subtitle_arabic">هنشوف معًا إيه اللي نقدر نبنيه معًا.</p>
+			</div>
+			<div class="flex gap-4" data-aos="fade-left">
+				<a href="mailto:moohmedhisshm@gmail.com" id="cta_contact" class="bg-white text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-lg font-medium">Contact Me</a>
+				<a href="#projects" id="cta_view_work" class="border-2 border-white hover:bg-white/10 px-5 py-3 rounded-lg font-medium">View My Work</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="bg-gray-900 text-white py-12 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="flex flex-col md:flex-row justify-between items-center">
+				<div class="mb-6 md:mb-0">
+					<h2 class="text-2xl font-bold mb-1" id="footer_name">Mohamed Hisham Abdelmajid</h2>
+					<p class="text-gray-400" id="footer_title">Junior Mobile Developer</p>
+					<p class="text-gray-400 mt-2">Email: moohmedhisshm@gmail.com | Phone: +20 121 855 485</p>
+				</div>
+				<div class="flex space-x-6 mb-6 md:mb-0">
+					<a href="https://github.com/Mohamedfgfff12" class="text-gray-400 hover:text-white transition" aria-label="GitHub"><i data-feather="github"></i></a>
+					<a href="https://www.linkedin.com/in/mohamed-hisham-1b2993352" class="text-gray-400 hover:text-white transition" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+					<a href="mailto:moohmedhisshm@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Email"><i data-feather="mail"></i></a>
+				</div>
+				<div>
+					<a href="#home" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium">Back to Top</a>
+				</div>
+			</div>
+			<div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+				<p id="footer_copyright">© 2025 Mohamed Hisham Abdelmajid. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+			feather.replace();
+			const toggle = document.getElementById('mobileToggle');
+			const mobileMenu = document.getElementById('mobileMenu');
+			const languageToggle = document.getElementById('languageToggle');
+			const languageText = document.getElementById('languageText');
+			let isArabic = false;
+			
+			toggle.addEventListener('click', function(){ 
+				mobileMenu.classList.toggle('hidden'); 
+			});
+			
+			languageToggle.addEventListener('click', function() {
+				isArabic = !isArabic;
+				languageText.textContent = isArabic ? 'AR' : 'EN';
+				
+				// Toggle Arabic elements
+				document.getElementById('bioArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('aboutSubtitleArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('attribute1Arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('attribute2Arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('attribute3Arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('professionalSummaryTitleArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('professionalSummaryArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('educationArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('experienceArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('educationSubtitle').classList.toggle('hidden', isArabic);
+				document.getElementById('experienceSubtitle').classList.toggle('hidden', isArabic);
+				document.getElementById('skillsSubtitle').classList.toggle('hidden', isArabic);
+				document.getElementById('professionalSkillsArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('technicalSkillsArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('projectsSubtitleArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('projectArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('testimonialsSubtitle').classList.toggle('hidden', isArabic);
+				document.getElementById('testimonialArabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('services_title_arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('service_1_arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('service_2_arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('service_3_arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('service_4_arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('service_5_arabic').classList.toggle('hidden', !isArabic);
+				document.getElementById('cta_subtitle_arabic').classList.toggle('hidden', !isArabic);
+				
+				// Update the title of the services section
+				document.getElementById('services_title').classList.toggle('hidden', isArabic);
+			});
+			
+			document.querySelectorAll('a[href^="#"]').forEach(function(link){
+				link.addEventListener('click', function(){ 
+					mobileMenu.classList.add('hidden'); 
+				});
+			});
+		});
+	</script>
+</body>
+</html>
