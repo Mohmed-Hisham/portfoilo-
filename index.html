@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mohamed Hisham Abdelmajid - Junior Mobile Developer</title>
+	<title>Mohamed Hisham Abdelmajid - Full-Stack Mobile Developer</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -30,6 +30,15 @@
 		.nav-link { position: relative; }
 		.nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #14b8a6; transition: width 0.3s ease; }
 		.nav-link:hover::after { width: 100%; }
+		/* Lightbox Styles */
+		.lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; display: flex; justify-content: center; align-items: center; }
+		.lightbox.hidden { display: none; }
+		.lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+		.lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; transition: transform 0.3s; }
+		.lightbox-close:hover { transform: scale(1.2); }
+		.project-img-clickable { cursor: pointer; }
+		.certificate-card { transition: all 0.3s ease; }
+		.certificate-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15); }
 	</style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -44,6 +53,7 @@
 				<a href="#experience" class="nav-link py-2">Experience</a>
 				<a href="#skills" class="nav-link py-2">Skills</a>
 				<a href="#projects" class="nav-link py-2">Projects</a>
+				<a href="#certifications" class="nav-link py-2">Certifications</a>
 				<a href="#testimonials" class="nav-link py-2">Testimonials</a>
 				<a href="#services" class="nav-link py-2">Services</a>
 			</div>
@@ -62,20 +72,27 @@
 				<a href="#experience" class="nav-link py-2">Experience</a>
 				<a href="#skills" class="nav-link py-2">Skills</a>
 				<a href="#projects" class="nav-link py-2">Projects</a>
+				<a href="#certifications" class="nav-link py-2">Certifications</a>
 				<a href="#testimonials" class="nav-link py-2">Testimonials</a>
 				<a href="#services" class="nav-link py-2">Services</a>
 			</div>
 		</div>
 	</nav>
 
+	<!-- Lightbox Modal -->
+	<div id="lightboxOverlay" class="lightbox hidden" onclick="closeLightbox()">
+		<span class="lightbox-close">&times;</span>
+		<img id="lightboxImg" src="" alt="Enlarged view">
+	</div>
+
 	<!-- Hero Section -->
 	<section id="home" class="pt-32 md:pt-40 pb-20 px-6">
 		<div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
 			<div class="md:w-2/3" data-aos="fade-right">
 				<h1 class="text-4xl md:text-5xl font-bold mb-4">Mohamed Hisham Abdelmajid</h1>
-				<h2 class="text-2xl md:text-3xl text-teal-600 mb-6">Junior Mobile Developer</h2>
-				<p class="text-lg text-gray-600 mb-8 max-w-2xl">I'm a mobile app developer who constantly invests in improving myself and my skills. I prioritize writing Clean Code so that any future updates or modifications remain easy and smooth. I use Cubit and GetX for state management to ensure fast, stable, and scalable applications. My goal is always to turn my client's idea into a modern, intuitive, high-performance application.</p>
-				<p class="text-lg text-gray-600 mb-8 max-w-2xl hidden" id="bioArabic">أنا مطوّر تطبيقات بشتغل دايمًا على تطوير نفسي ومهاراتي. بميّز شغلي إني بكتب Clean Code عشان أي تعديل أو تحديث يبقى سهل وسلس. بستخدم Cubit و GetX لإدارة الحالة عشان أضمن إن التطبيق يفضل سريع، مستقر، وقابل للتطوير. هدفي دايمًا إن فكرة العميل تتحوّل لتطبيق عصري، سهل الاستخدام، وبأداء عالي.</p>
+				<h2 class="text-2xl md:text-3xl text-teal-600 mb-6">Full-Stack Mobile & Backend Developer</h2>
+				<p class="text-lg text-gray-600 mb-8 max-w-2xl">I'm a Full-Stack developer specializing in mobile apps (Flutter) and backend development (.NET/C#). I build complete solutions from mobile apps to REST APIs and admin dashboards. I prioritize Clean Architecture and Clean Code to ensure scalable, maintainable systems. Experienced in integrating third-party APIs (Alibaba, Amazon, AliExpress, Shein) and real-time features with SignalR.</p>
+				<p class="text-lg text-gray-600 mb-8 max-w-2xl hidden" id="bioArabic">أنا مطور Full-Stack متخصص في تطبيقات الموبايل (Flutter) وتطوير الـ Backend باستخدام .NET/C#. ببني حلول متكاملة من تطبيقات موبايل لـ REST APIs ولوحات تحكم. بطبق Clean Architecture و Clean Code عشان أضمن أنظمة قابلة للتطوير والصيانة. عندي خبرة في ربط APIs خارجية (علي بابا، أمازون، علي إكسبريس، شي إن) وميزات Real-time مع SignalR.</p>
 				<div class="flex flex-wrap gap-4">
 					<a href="#projects" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition">View My Work</a>
 				</div>
@@ -124,10 +141,10 @@
 				<h3 class="text-2xl font-semibold mb-2" id="professionalSummaryTitle">Professional Summary</h3>
 				<p class="text-gray-700 mb-4 hidden" id="professionalSummaryTitleArabic">ملخص مهني</p>
 				<p class="text-gray-700" id="professionalSummary">
-					A professional mobile app developer with experience building Flutter applications while adhering to Clean Code principles for maintainable, scalable codebases. I leverage Cubit and GetX for state management to deliver fast, stable apps. I seek to join development teams that value quality and user experience, aiming to contribute innovative technical solutions that make a real difference for individuals and businesses.
+					A Full-Stack developer with expertise in Flutter mobile development and .NET backend systems. I build end-to-end solutions including mobile apps, REST APIs, and admin dashboards using Clean Architecture. Experienced in integrating external APIs (Alibaba, Amazon, AliExpress, Shein), implementing real-time features with SignalR, and managing complex e-commerce/dropshipping systems. Passionate about delivering high-quality, scalable solutions that drive business growth.
 				</p>
 				<p class="text-gray-700 hidden" id="professionalSummaryArabic">
-					مطور تطبيقات محترف بخبرة في بناء تطبيقات موبايل باستخدام Flutter مع تطبيق معايير Clean Code لضمان سهولة التطوير والتحديث. أستخدم Cubit و GetX لإدارة الحالة وتقديم تطبيقات سريعة ومستقرة. أسعى للانضمام إلى فرق تطوير تهتم بالجودة وتجربة المستخدم، وأطمح إلى المساهمة في بناء حلول تقنية مبتكرة تخدم الأفراد والشركات وتحدث فرقًا حقيقيًا.
+					مطور Full-Stack بخبرة في تطوير تطبيقات Flutter وأنظمة Backend باستخدام .NET/C#. ببني حلول متكاملة تشمل تطبيقات موبايل، REST APIs، ولوحات تحكم باستخدام Clean Architecture. عندي خبرة في ربط APIs خارجية (علي بابا، أمازون، علي إكسبريس، شي إن)، وتنفيذ ميزات Real-time مع SignalR، وإدارة أنظمة E-commerce/Dropshipping المعقدة. شغوف بتقديم حلول عالية الجودة وقابلة للتطوير.
 				</p>
 			</div>
 		</div>
@@ -166,14 +183,37 @@
 			</div>
 			<div class="max-w-3xl mx-auto relative">
 				<div class="relative" data-aos="fade-up">
+					<!-- MTS Job -->
 					<div class="timeline-item mb-12 pl-8 relative">
 						<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-teal-600 border-4 border-white z-10"></div>
 						<div class="bg-white p-6 rounded-lg shadow">
-							<h3 class="text-lg font-semibold">Freelance Mobile App Developer | Independent Clients</h3>
+							<div class="flex items-center gap-3 mb-2">
+								<h3 class="text-lg font-semibold">Software Developer</h3>
+								<span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Current</span>
+							</div>
+							<p class="text-teal-600 font-medium">Mass Technology Solutions (MTS) - Cairo, Egypt</p>
+							<p class="text-gray-600 mb-4">2025 – Present</p>
+							<ul class="list-disc pl-5 space-y-2 text-gray-700">
+								<li>Working on enterprise software solutions and business management systems</li>
+								<li>Developing and maintaining software applications using modern technologies</li>
+								<li>Collaborating with cross-functional teams to deliver high-quality solutions</li>
+							</ul>
+							<a href="https://masstech.com.eg/" target="_blank" class="inline-flex items-center text-teal-600 hover:text-teal-700 mt-3 text-sm">
+								<i data-feather="external-link" class="w-4 h-4 mr-1"></i> Visit Company Website
+							</a>
+						</div>
+					</div>
+					<!-- Freelance -->
+					<div class="timeline-item mb-12 pl-8 relative">
+						<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-teal-600 border-4 border-white z-10"></div>
+						<div class="bg-white p-6 rounded-lg shadow">
+							<h3 class="text-lg font-semibold">Full-Stack Developer | Freelance</h3>
 							<p class="text-gray-600 mb-4">2022 – Present</p>
 							<ul class="list-disc pl-5 space-y-2 text-gray-700">
-								<li>Developed Easy Store, an inventory management app with sales, purchasing, supplier tracking, and integrated accounting system.</li>
-								<li>Currently developing Drop Shopping, an e-commerce platform to simplify online selling.</li>
+								<li>Built <strong>Saltk</strong> - A complete E-commerce & Dropshipping platform integrating products from Alibaba, Amazon, AliExpress, and Shein via RapidAPI.</li>
+								<li>Developed <strong>Saltk Admin Dashboard</strong> (Desktop) - Full admin panel with real-time order tracking, customer management, analytics, and SignalR live updates.</li>
+								<li>Built complete <strong>REST APIs</strong> using .NET/C# for both E-commerce app and Admin Dashboard.</li>
+								<li>Developed <strong>Easy Store</strong> - Inventory management app with sales, purchasing, supplier tracking, and integrated accounting system.</li>
 							</ul>
 						</div>
 					</div>
@@ -223,17 +263,44 @@
 				</div>
 				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
 					<h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
-					<ul class="space-y-2 text-gray-700">
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Flutter & Dart</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>GetX State Management</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>REST APIs</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Firebase</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Supabase</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQLite</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Git & GitHub</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Android Studio</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>UI/UX Design Basics</li>
-					</ul>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+						<div>
+							<h4 class="font-medium text-teal-600 mb-2">Frontend / Mobile</h4>
+							<ul class="space-y-2 text-gray-700">
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Flutter & Dart</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>GetX & Cubit State Management</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Clean Architecture</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>UI/UX Design</li>
+							</ul>
+						</div>
+						<div>
+							<h4 class="font-medium text-teal-600 mb-2">Backend</h4>
+							<ul class="space-y-2 text-gray-700">
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>C# & .NET Core</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>REST API Development</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SignalR (Real-time)</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Entity Framework</li>
+							</ul>
+						</div>
+						<div>
+							<h4 class="font-medium text-teal-600 mb-2">Databases & Cloud</h4>
+							<ul class="space-y-2 text-gray-700">
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQL Server</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Firebase</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Supabase</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQLite</li>
+							</ul>
+						</div>
+						<div>
+							<h4 class="font-medium text-teal-600 mb-2">Tools & Integrations</h4>
+							<ul class="space-y-2 text-gray-700">
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Git & GitHub</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>RapidAPI Integrations</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Third-party APIs</li>
+								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>VS Code & Android Studio</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="300" id="technicalSkillsArabic">
 					<h3 class="text-xl font-semibold mb-4">المهارات التقنية</h3>
@@ -262,35 +329,107 @@
 				<p class="text-gray-600 hidden" id="projectsSubtitleArabic">هذه بعض المشاريع التي أفتخر بتنفيذها</p>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<!-- Saltk App -->
 				<div class="project-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up">
-					<img src="https://dkwczobptpbpuahdprgg.supabase.co/storage/v1/object/public/easystroretrail/screen1.png" alt="Easy Store" class="project-img w-full h-48 object-cover">
+					<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056385/photo_2026-02-02_20-19-32_g4wvwq.jpg" alt="Saltk App" class="project-img project-img-clickable w-full h-64 object-contain bg-gray-100 p-2" onclick="openLightbox(this.src)">
 					<div class="p-6 space-y-2">
-						<h3 class="text-xl font-semibold">Easy Store</h3>
-						<p class="text-gray-700"><span class="font-medium">Client:</span> Independent Client</p>
-						<p class="text-gray-700"><span class="font-medium">Role:</span> Lead Developer</p>
-						<p class="text-gray-700"><span class="font-medium">Problem:</span> The client needed a system to track fabric inventory by color and quantity, but was manually recording data in Excel. They also needed a complete financial and customer management system accessible anywhere, not just from the office.</p>
-						<p class="text-gray-700"><span class="font-medium">Solution:</span> Built a cross-platform Flutter app (web + mobile) using GetX for state management and Firebase for backend. Implemented a color picker that displays the actual color when typing its name. Integrated full inventory, sales, purchases, accounting, and customer modules.</p>
-						<p class="text-gray-700"><span class="font-medium">Impact:</span> The app reduced manual errors by 90%, improved inventory accuracy, and enabled remote access for the business owner. Now used daily in operations.</p>
+						<h3 class="text-xl font-semibold">Saltk - E-commerce & Dropshipping</h3>
+						<span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mb-2">Featured Project</span>
+						<p class="text-gray-700"><span class="font-medium">Type:</span> Full-Stack Project (Mobile + Backend)</p>
+						<p class="text-gray-700"><span class="font-medium">Role:</span> Full-Stack Developer</p>
+						<p class="text-gray-700"><span class="font-medium">Description:</span> A hybrid E-commerce & Dropshipping platform that aggregates products from Alibaba, Amazon, AliExpress, and Shein via RapidAPI. Users can also add their own local products to create a complete marketplace.</p>
+						<p class="text-gray-700"><span class="font-medium">Key Features:</span></p>
+						<ul class="list-disc pl-5 text-gray-600 text-sm">
+							<li>Multi-platform product aggregation via APIs</li>
+							<li>Local product management</li>
+							<li>Complete order management system</li>
+							<li>Real-time notifications</li>
+						</ul>
 						<div class="flex flex-wrap gap-2 pt-2">
 							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Flutter</span>
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">GetX</span>
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Firebase</span>
+							<span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">.NET/C#</span>
+							<span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">REST API</span>
+							<span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">RapidAPI</span>
 						</div>
 					</div>
 				</div>
-				<div class="project-card bg-white rounded-lg shadow overflow-hidden hidden" data-aos="fade-up" data-aos-delay="100" id="projectArabic">
-					<img src="https://dkwczobptpbpuahdprgg.supabase.co/storage/v1/object/public/easystroretrail/screen1.png" alt="Easy Store" class="project-img w-full h-48 object-cover">
+
+				<!-- Saltk Admin Dashboard -->
+				<div class="project-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+					<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056275/Screenshot_56_elqsdx.png" alt="Saltk Admin Dashboard" class="project-img project-img-clickable w-full h-64 object-contain bg-gray-100 p-2" onclick="openLightbox(this.src)">
 					<div class="p-6 space-y-2">
-						<h3 class="text-xl font-semibold">إيزي ستور</h3>
-						<p class="text-gray-700"><span class="font-medium">العميل:</span> عميل مستقل</p>
-						<p class="text-gray-700"><span class="font-medium">الدور:</span> المطور الرئيسي</p>
-						<p class="text-gray-700"><span class="font-medium">المشكلة:</span> كان العميل يواجه صعوبة في تتبع مخزون القماش حسب اللون والكمية باستخدام ملفات Excel، وكان يحتاج نظامًا متكاملًا لإدارة المحاسبة والعملاء، ويمكن الوصول إليه من أي مكان وليس فقط من المكتب.</p>
-						<p class="text-gray-700"><span class="font-medium">الحل:</span> صممت تطبيق Flutter متعدد المنصات (موبايل + ويب) باستخدام GetX لإدارة الحالة وFirebase للخلفية. تم تنفيذ أداة اختيار لون تظهر اللون الحقيقي عند كتابة اسمه. كما تم دمج وحدات شاملة للمخزون، المبيعات، المشتريات، المحاسبة، وإدارة العملاء.</p>
-						<p class="text-gray-700"><span class="font-medium">التأثير:</span> قلل التطبيق الأخطاء اليدوية بنسبة 90%، وحسّن دقة المخزون، ومكن صاحب المشروع من الوصول للتطبيق من أي مكان. يُستخدم الآن يوميًا في العمليات.</p>
+						<h3 class="text-xl font-semibold">Saltk Admin Dashboard</h3>
+						<span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mb-2">Featured Project</span>
+						<p class="text-gray-700"><span class="font-medium">Type:</span> Desktop Admin Panel</p>
+						<p class="text-gray-700"><span class="font-medium">Role:</span> Full-Stack Developer</p>
+						<p class="text-gray-700"><span class="font-medium">Description:</span> Comprehensive admin dashboard for managing the Saltk e-commerce platform with real-time updates via SignalR.</p>
+						<p class="text-gray-700"><span class="font-medium">Key Features:</span></p>
+						<ul class="list-disc pl-5 text-gray-600 text-sm">
+							<li>Live orders with real-time SignalR updates</li>
+							<li>Customer & order management</li>
+							<li>Coupons & promotions system</li>
+							<li>Analytics & dashboard stats</li>
+							<li>Multi-language support (AR/EN)</li>
+							<li>Role-based access (SuperAdmin/Admin)</li>
+							<li>Keyboard shortcuts (Ctrl+1-9)</li>
+						</ul>
 						<div class="flex flex-wrap gap-2 pt-2">
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">فلاتر</span>
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Flutter Desktop</span>
+							<span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">.NET/C#</span>
+							<span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">SignalR</span>
+							<span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Firebase</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Easy Store -->
+				<div class="project-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+					<img src="https://dkwczobptpbpuahdprgg.supabase.co/storage/v1/object/public/easystroretrail/screen1.png" alt="Easy Store" class="project-img project-img-clickable w-full h-64 object-contain bg-gray-100 p-2" onclick="openLightbox(this.src)">
+					<div class="p-6 space-y-2">
+						<h3 class="text-xl font-semibold">Easy Store</h3>
+						<p class="text-gray-700"><span class="font-medium">Type:</span> Mobile + Web App</p>
+						<p class="text-gray-700"><span class="font-medium">Role:</span> Lead Developer</p>
+						<p class="text-gray-700"><span class="font-medium">Problem:</span> Client needed a system to track fabric inventory by color and quantity, replacing manual Excel tracking.</p>
+						<p class="text-gray-700"><span class="font-medium">Solution:</span> Built a cross-platform Flutter app with color picker, full inventory, sales, purchases, accounting, and customer modules.</p>
+						<p class="text-gray-700"><span class="font-medium">Impact:</span> Reduced manual errors by 90%, improved inventory accuracy, enabled remote access.</p>
+						<div class="flex flex-wrap gap-2 pt-2">
+							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Flutter</span>
 							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">GetX</span>
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">فايربيس</span>
+							<span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Firebase</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Certifications Section -->
+	<section id="certifications" class="py-20 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-12" data-aos="fade-up">
+				<h2 class="text-3xl font-bold">Certifications</h2>
+				<p class="text-gray-600">Professional certifications and training programs</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<!-- NTI Certificate -->
+				<div class="certificate-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up">
+					<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056826/photo_2026-02-02_20-26-51_nmgpf7.jpg" alt="NTI Certificate" class="project-img-clickable w-full h-56 object-contain bg-gradient-to-br from-yellow-50 to-orange-50 p-3" onclick="openLightbox(this.src)">
+					<div class="p-6">
+						<div class="flex items-center justify-between mb-3">
+							<h3 class="text-xl font-semibold text-teal-600">Mobile App Development</h3>
+							<span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full font-bold">100%</span>
+						</div>
+						<p class="text-gray-700 font-medium mb-2">Digital Egypt Youth Program</p>
+						<p class="text-gray-600 text-sm mb-3">National Telecommunication Institute (NTI)</p>
+						<div class="space-y-1 text-sm text-gray-600">
+							<p><i data-feather="calendar" class="inline w-4 h-4 mr-1"></i> July 2025 – September 2025</p>
+							<p><i data-feather="clock" class="inline w-4 h-4 mr-1"></i> Technical Hours: 90 hrs</p>
+							<p><i data-feather="briefcase" class="inline w-4 h-4 mr-1"></i> Freelancing: 30 hrs (Coaching with Gigs)</p>
+						</div>
+						<div class="flex flex-wrap gap-2 pt-4">
+							<span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Ministry of ICT</span>
+							<span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">NTI</span>
+							<span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded-full">Creativa</span>
 						</div>
 					</div>
 				</div>
@@ -299,7 +438,7 @@
 	</section>
 
 	<!-- Testimonials Section -->
-	<section id="testimonials" class="py-20 px-6">
+	<section id="testimonials" class="py-20 bg-gray-100 px-6">
 		<div class="max-w-7xl mx-auto">
 			<div class="text-center mb-12" data-aos="fade-up">
 				<h2 class="text-3xl font-bold">Client Testimonials</h2>
@@ -325,46 +464,36 @@
 				<h2 class="text-3xl font-bold" id="services_title">Services I Offer</h2>
 				<p class="text-gray-600 hidden" id="services_title_arabic">الخدمات التي أقدمها</p>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
 					<i data-feather="smartphone" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700" id="service_1">Develop mobile apps with Flutter (Android & iOS)</p>
+					<h4 class="font-semibold mb-2">Mobile App Development</h4>
+					<p class="text-gray-700 text-sm">Build cross-platform mobile apps with Flutter (Android & iOS) with modern UI/UX</p>
 				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="service_1_arabic">
-					<i data-feather="smartphone" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700">تطوير تطبيقات موبايل باستخدام Flutter (أندرويد وآيفون)</p>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
+					<i data-feather="server" class="text-teal-600 mb-3"></i>
+					<h4 class="font-semibold mb-2">Backend Development</h4>
+					<p class="text-gray-700 text-sm">Build robust REST APIs using .NET/C# with clean architecture and best practices</p>
 				</div>
 				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
-					<i data-feather="layout" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700" id="service_2">Design modern, user-friendly interfaces (UI/UX)</p>
+					<i data-feather="monitor" class="text-teal-600 mb-3"></i>
+					<h4 class="font-semibold mb-2">Admin Dashboards</h4>
+					<p class="text-gray-700 text-sm">Create comprehensive admin panels (Desktop/Web) with real-time features using SignalR</p>
 				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="300" id="service_2_arabic">
-					<i data-feather="layout" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700">تصميم واجهات عصرية وسهلة الاستخدام (واجهة المستخدم وتجربة المستخدم)</p>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
+					<i data-feather="shopping-cart" class="text-teal-600 mb-3"></i>
+					<h4 class="font-semibold mb-2">E-commerce Solutions</h4>
+					<p class="text-gray-700 text-sm">Build complete e-commerce & dropshipping platforms with multi-vendor integration</p>
 				</div>
 				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="400">
+					<i data-feather="link" class="text-teal-600 mb-3"></i>
+					<h4 class="font-semibold mb-2">API Integrations</h4>
+					<p class="text-gray-700 text-sm">Integrate third-party APIs (Alibaba, Amazon, AliExpress, Shein, RapidAPI)</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="500">
 					<i data-feather="database" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700" id="service_3">Integrate databases (Supabase, Firebase, SQLite)</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="500" id="service_3_arabic">
-					<i data-feather="database" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700">ربط التطبيقات بقاعدة بيانات (Supabase / Firebase / SQLite)</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="600">
-					<i data-feather="layers" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700" id="service_4">Build custom systems (inventory, accounting, e-commerce)</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="700" id="service_4_arabic">
-					<i data-feather="layers" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700">بناء أنظمة مخصصة (مخازن، محاسبة، تجارة إلكترونية)</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="800">
-					<i data-feather="refresh-cw" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700" id="service_5">Provide post-launch updates and maintenance</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="900" id="service_5_arabic">
-					<i data-feather="refresh-cw" class="text-teal-600 mb-3"></i>
-					<p class="text-gray-700">تقديم تحديثات وصيانة للتطبيقات بعد التسليم</p>
+					<h4 class="font-semibold mb-2">Database Design</h4>
+					<p class="text-gray-700 text-sm">Design and implement databases (SQL Server, Firebase, Supabase, SQLite)</p>
 				</div>
 			</div>
 		</div>
@@ -391,7 +520,7 @@
 			<div class="flex flex-col md:flex-row justify-between items-center">
 				<div class="mb-6 md:mb-0">
 					<h2 class="text-2xl font-bold mb-1" id="footer_name">Mohamed Hisham Abdelmajid</h2>
-					<p class="text-gray-400" id="footer_title">Junior Mobile Developer</p>
+					<p class="text-gray-400" id="footer_title">Full-Stack Mobile & Backend Developer</p>
 					<p class="text-gray-400 mt-2">Email: moohmedhisshm@gmail.com | Phone: +20 121 855 485</p>
 				</div>
 				<div class="flex space-x-6 mb-6 md:mb-0">
@@ -404,12 +533,29 @@
 				</div>
 			</div>
 			<div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-				<p id="footer_copyright">© 2025 Mohamed Hisham Abdelmajid. All rights reserved.</p>
+				<p id="footer_copyright">© 2026 Mohamed Hisham Abdelmajid. All rights reserved.</p>
 			</div>
 		</div>
 	</footer>
 
 	<script>
+		// Lightbox functions
+		function openLightbox(src) {
+			document.getElementById('lightboxImg').src = src;
+			document.getElementById('lightboxOverlay').classList.remove('hidden');
+			document.body.style.overflow = 'hidden';
+		}
+		
+		function closeLightbox() {
+			document.getElementById('lightboxOverlay').classList.add('hidden');
+			document.body.style.overflow = 'auto';
+		}
+		
+		// Close lightbox on Escape key
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape') closeLightbox();
+		});
+		
 		document.addEventListener('DOMContentLoaded', function () {
 			AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 			feather.replace();
