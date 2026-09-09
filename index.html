@@ -1,615 +1,877 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mohamed Hisham Abdelmajid - Full-Stack Mobile Developer</title>
-	<script src="https://cdn.tailwindcss.com"></script>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
-	<style>
-		body {
-			font-family: 'Poppins', sans-serif;
-			scroll-behavior: smooth;
-		}
-		.profile-img {
-			width: 200px;
-			height: 200px;
-			object-fit: cover;
-			border: 5px solid #e2e8f0;
-		}
-		.skill-card { transition: all 0.3s ease; }
-		.skill-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-		.project-card { transition: all 0.3s ease; overflow: hidden; }
-		.project-card:hover { transform: translateY(-5px); }
-		.project-img { transition: all 0.5s ease; }
-		.project-card:hover .project-img { transform: scale(1.05); }
-		.timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 7px; top: 24px; height: 100%; width: 2px; background: #14b8a6; }
-		.nav-link { position: relative; }
-		.nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #14b8a6; transition: width 0.3s ease; }
-		.nav-link:hover::after { width: 100%; }
-		/* Lightbox Styles */
-		.lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; display: flex; justify-content: center; align-items: center; }
-		.lightbox.hidden { display: none; }
-		.lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
-		.lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; transition: transform 0.3s; }
-		.lightbox-close:hover { transform: scale(1.2); }
-		.project-img-clickable { cursor: pointer; }
-		.certificate-card { transition: all 0.3s ease; }
-		.certificate-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15); }
-	</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Hisham Abdelmajid — Flutter & .NET Engineer</title>
+
+<meta name="description" content="Mohamed Hisham Abdelmajid — Flutter engineer building production Android and iOS apps, backed by ASP.NET Core APIs. Clean Architecture, Bloc/Cubit, SignalR, release automation with Fastlane and Shorebird.">
+<meta name="author" content="Mohamed Hisham Abdelmajid">
+<link rel="canonical" href="https://mohamedhisham.dev/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedhisham.dev/">
+<meta property="og:title" content="Mohamed Hisham Abdelmajid — Flutter & .NET Engineer">
+<meta property="og:description" content="Production Flutter apps for Android and iOS, backed by ASP.NET Core APIs I build and ship myself.">
+<meta property="og:image" content="https://res.cloudinary.com/dyo7hsfly/image/upload/v1758127770/WhatsApp_Image_2025-09-17_at_19.47.27_bbc99243_wzl7ey.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d9488'/><text x='50' y='70' font-size='58' font-family='Segoe UI,Arial' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'Poppins', 'system-ui', 'sans-serif'] },
+        colors: { brand: { 50:'#f0fdfa',100:'#ccfbf1',400:'#2dd4bf',500:'#14b8a6',600:'#0d9488',700:'#0f766e',900:'#134e4a' } }
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js" defer></script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  html[dir="rtl"] body { font-family: 'Cairo', 'Inter', sans-serif; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  .nav-link::after {
+    content: ''; position: absolute; inset-inline-start: 0; bottom: -2px;
+    width: 0; height: 2px; background: #0d9488; transition: width .25s ease;
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(2,6,23,.92); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+  .lightbox img { max-width: 92%; max-height: 92%; border-radius: 12px; }
+
+  .card-hover { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .card-hover:hover { transform: translateY(-4px); }
+
+  .timeline::before {
+    content: ''; position: absolute; inset-inline-start: 7px; top: 18px; bottom: 0;
+    width: 2px; background: linear-gradient(#0d9488, transparent);
+  }
+  ::selection { background: #0d9488; color: #fff; }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-	<!-- Navigation -->
-	<nav class="fixed w-full bg-white/90 backdrop-blur shadow-sm z-50">
-		<div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-			<a href="#home" class="text-2xl font-bold text-teal-600">Mohamed Hisham</a>
-			<div id="desktopMenu" class="hidden md:flex items-center space-x-8">
-				<a href="#home" class="nav-link py-2">Home</a>
-				<a href="#about" class="nav-link py-2">About</a>
-				<a href="#education" class="nav-link py-2">Education</a>
-				<a href="#experience" class="nav-link py-2">Experience</a>
-				<a href="#skills" class="nav-link py-2">Skills</a>
-				<a href="#projects" class="nav-link py-2">Projects</a>
-				<a href="#certifications" class="nav-link py-2">Certifications</a>
-				<a href="#testimonials" class="nav-link py-2">Testimonials</a>
-				<a href="#services" class="nav-link py-2">Services</a>
-			</div>
-			<button id="mobileToggle" class="md:hidden focus:outline-none" aria-label="Toggle menu">
-				<i data-feather="menu"></i>
-			</button>
-			<button id="languageToggle" class="md:hidden ml-4 focus:outline-none" aria-label="Toggle language">
-				<span id="languageText">EN</span>
-			</button>
-		</div>
-		<div id="mobileMenu" class="md:hidden hidden px-6 pb-4">
-			<div class="flex flex-col space-y-3 bg-white rounded-md shadow p-4">
-				<a href="#home" class="nav-link py-2">Home</a>
-				<a href="#about" class="nav-link py-2">About</a>
-				<a href="#education" class="nav-link py-2">Education</a>
-				<a href="#experience" class="nav-link py-2">Experience</a>
-				<a href="#skills" class="nav-link py-2">Skills</a>
-				<a href="#projects" class="nav-link py-2">Projects</a>
-				<a href="#certifications" class="nav-link py-2">Certifications</a>
-				<a href="#testimonials" class="nav-link py-2">Testimonials</a>
-				<a href="#services" class="nav-link py-2">Services</a>
-			</div>
-		</div>
-	</nav>
 
-	<!-- Lightbox Modal -->
-	<div id="lightboxOverlay" class="lightbox hidden" onclick="closeLightbox()">
-		<span class="lightbox-close">&times;</span>
-		<img id="lightboxImg" src="" alt="Enlarged view">
-	</div>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 antialiased">
 
-	<!-- Hero Section -->
-	<section id="home" class="pt-32 md:pt-40 pb-20 px-6">
-		<div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
-			<div class="md:w-2/3" data-aos="fade-right">
-				<h1 class="text-4xl md:text-5xl font-bold mb-4">Mohamed Hisham Abdelmajid</h1>
-				<h2 class="text-2xl md:text-3xl text-teal-600 mb-6">Full-Stack Mobile & Backend Developer</h2>
-				<p class="text-lg text-gray-600 mb-8 max-w-2xl">Full-Stack developer building mobile apps with Flutter and backend systems with .NET/C#. Focused on Clean Architecture and scalable solutions.</p>
-				<p class="text-lg text-gray-600 mb-8 max-w-2xl hidden" id="bioArabic">مطور Full-Stack ببني تطبيقات موبايل بـ Flutter وأنظمة Backend بـ .NET/C#. متخصص في Clean Architecture وحلول قابلة للتطوير.</p>
-				<div class="flex flex-wrap gap-4">
-					<a href="#projects" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition">View My Work</a>
-				</div>
-			</div>
-			<div class="md:w-1/3 flex justify-center" data-aos="fade-left">
-				<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1758127770/WhatsApp_Image_2025-09-17_at_19.47.27_bbc99243_wzl7ey.jpg" alt="Mohamed Hisham Abdelmajid profile" class="profile-img rounded-full shadow-xl">
-			</div>
-		</div>
-	</section>
+<!-- ===================== NAV ===================== -->
+<nav class="fixed inset-x-0 top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur border-b border-slate-200/70 dark:border-slate-800">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+    <a href="#home" class="font-extrabold text-lg tracking-tight text-slate-900 dark:text-white shrink-0">
+      Mohamed<span class="text-brand-600">.</span>
+    </a>
 
-	<!-- About Section -->
-	<section id="about" class="py-20 bg-gray-100 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold mb-2">About Me</h2>
-				<p class="text-gray-600" id="aboutSubtitle">Personal Bio</p>
-				<p class="text-gray-600 hidden" id="aboutSubtitleArabic">السيرة الذاتية</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
-				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3">
-					<i data-feather="heart" class="text-teal-600"></i>
-					<span>Problem Solving</span>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3 hidden" id="attribute1Arabic">
-					<i data-feather="heart" class="text-teal-600"></i>
-					<span>حل المشكلات</span>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3">
-					<i data-feather="target" class="text-teal-600"></i>
-					<span>Teamwork</span>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3 hidden" id="attribute2Arabic">
-					<i data-feather="target" class="text-teal-600"></i>
-					<span>العمل الجماعي</span>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3">
-					<i data-feather="book-open" class="text-teal-600"></i>
-					<span>Rapid Learning</span>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow flex items-center gap-3 hidden" id="attribute3Arabic">
-					<i data-feather="book-open" class="text-teal-600"></i>
-					<span>التعلم السريع</span>
-				</div>
-			</div>
-			<div class="mt-12" data-aos="fade-up" data-aos-delay="200">
-				<h3 class="text-2xl font-semibold mb-2" id="professionalSummaryTitle">Professional Summary</h3>
-				<p class="text-gray-700 mb-4 hidden" id="professionalSummaryTitleArabic">ملخص مهني</p>
-				<p class="text-gray-700" id="professionalSummary">
-					A Full-Stack developer with expertise in Flutter mobile development and .NET backend systems. I build end-to-end solutions including mobile apps, REST APIs, and admin dashboards using Clean Architecture. Experienced in integrating external APIs (Alibaba, Amazon, AliExpress, Shein), implementing real-time features with SignalR, and managing complex e-commerce/dropshipping systems. Passionate about delivering high-quality, scalable solutions that drive business growth.
-				</p>
-				<p class="text-gray-700 hidden" id="professionalSummaryArabic">
-					مطور Full-Stack بخبرة في تطوير تطبيقات Flutter وأنظمة Backend باستخدام .NET/C#. ببني حلول متكاملة تشمل تطبيقات موبايل، REST APIs، ولوحات تحكم باستخدام Clean Architecture. عندي خبرة في ربط APIs خارجية (علي بابا، أمازون، علي إكسبريس، شي إن)، وتنفيذ ميزات Real-time مع SignalR، وإدارة أنظمة E-commerce/Dropshipping المعقدة. شغوف بتقديم حلول عالية الجودة وقابلة للتطوير.
-				</p>
-			</div>
-		</div>
-	</section>
+    <div id="desktopMenu" class="hidden lg:flex items-center gap-6 text-sm font-medium">
+      <a href="#about"      class="nav-link relative py-1" data-i18n="nav.about">About</a>
+      <a href="#skills"     class="nav-link relative py-1" data-i18n="nav.skills">Skills</a>
+      <a href="#experience" class="nav-link relative py-1" data-i18n="nav.experience">Experience</a>
+      <a href="#projects"   class="nav-link relative py-1" data-i18n="nav.projects">Projects</a>
+      <a href="#services"   class="nav-link relative py-1" data-i18n="nav.services">Services</a>
+      <a href="#contact"    class="nav-link relative py-1" data-i18n="nav.contact">Contact</a>
+    </div>
 
-	<!-- Education Section -->
-	<section id="education" class="py-20 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold">Education</h2>
-				<p class="text-gray-600 hidden" id="educationSubtitle">التعليم</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
-					<h3 class="text-xl font-semibold mb-1">Bachelor's in Educational Technology</h3>
-					<p class="text-gray-600 mb-2">Zagazig University • <span class="text-teal-600">2021 – 2026</span></p>
-					<p class="text-gray-700"><span class="font-medium">Major:</span> Computer and Systems</p>
-					<p class="text-gray-700"><span class="font-medium">Grade:</span> Very Good</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="educationArabic">
-					<h3 class="text-xl font-semibold mb-1">بكالوريوس تربية نوعية – قسم تكنولوجيا التعليم</h3>
-					<p class="text-gray-600 mb-2">جامعة الزقازيق • <span class="text-teal-600">2021 – 2026</span></p>
-					<p class="text-gray-700"><span class="font-medium">التخصص:</span> هندسة الحاسبات ونظم</p>
-					<p class="text-gray-700"><span class="font-medium">التقدير:</span> جيد جدًا</p>
-				</div>
-			</div>
-		</div>
-	</section>
+    <div class="flex items-center gap-2">
+      <button id="langToggle" class="px-2.5 py-1.5 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-700 hover:border-brand-600 hover:text-brand-600 transition" aria-label="Switch language">
+        <span id="langLabel">ع</span>
+      </button>
+      <button id="themeToggle" class="p-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-brand-600 hover:text-brand-600 transition" aria-label="Toggle dark mode">
+        <i data-feather="moon" class="w-4 h-4 dark:hidden"></i>
+        <i data-feather="sun" class="w-4 h-4 hidden dark:block"></i>
+      </button>
+      <button id="menuToggle" class="lg:hidden p-2 rounded-lg border border-slate-300 dark:border-slate-700" aria-label="Toggle menu" aria-expanded="false">
+        <i data-feather="menu" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
 
-	<!-- Work Experience Section -->
-	<section id="experience" class="py-20 bg-gray-100 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold">Work Experience</h2>
-				<p class="text-gray-600 hidden" id="experienceSubtitle">الخبرة العملية</p>
-			</div>
-			<div class="max-w-3xl mx-auto relative">
-				<div class="relative" data-aos="fade-up">
-					<!-- MTS Job -->
-					<div class="timeline-item mb-12 pl-8 relative">
-						<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-teal-600 border-4 border-white z-10"></div>
-						<div class="bg-white p-6 rounded-lg shadow">
-							<div class="flex items-center gap-3 mb-2">
-								<h3 class="text-lg font-semibold">Software Developer</h3>
-								
-							</div>
-							<p class="text-teal-600 font-medium">Mass Technology Solutions (MTS) - Cairo, Egypt</p>
-							<p class="text-gray-600 mb-4">2025 – Present</p>
-							<ul class="list-disc pl-5 space-y-2 text-gray-700">
-								<li>Working on enterprise software solutions and business management systems</li>
-								<li>Developing and maintaining software applications using modern technologies</li>
-								<li>Collaborating with cross-functional teams to deliver high-quality solutions</li>
-							</ul>
-							<a href="https://masstech.com.eg/" target="_blank" class="inline-flex items-center text-teal-600 hover:text-teal-700 mt-3 text-sm">
-								<i data-feather="external-link" class="w-4 h-4 mr-1"></i> Visit Company Website
-							</a>
-						</div>
-					</div>
-					<!-- Freelance -->
-					<div class="timeline-item mb-12 pl-8 relative">
-						<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-teal-600 border-4 border-white z-10"></div>
-						<div class="bg-white p-6 rounded-lg shadow">
-							<h3 class="text-lg font-semibold">Full-Stack Developer | Freelance</h3>
-							<p class="text-gray-600 mb-4">2022 – Present</p>
-							<ul class="list-disc pl-5 space-y-2 text-gray-700">
-								<li>Built <strong>Saltk</strong> - A complete E-commerce & Dropshipping platform integrating products from Alibaba, Amazon, AliExpress, and Shein via RapidAPI.</li>
-								<li>Developed <strong>Saltk Admin Dashboard</strong> (Desktop) - Full admin panel with real-time order tracking, customer management, analytics, and SignalR live updates.</li>
-								<li>Built complete <strong>REST APIs</strong> using .NET/C# for both E-commerce app and Admin Dashboard.</li>
-								<li>Developed <strong>Easy Store</strong> - Inventory management app with sales, purchasing, supplier tracking, and integrated accounting system.</li>
-							</ul>
-						</div>
-					</div>
-					<div class="timeline-item pl-8 relative hidden" id="experienceArabic">
-						<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-teal-600 border-4 border-white z-10"></div>
-						<div class="bg-white p-6 rounded-lg shadow">
-							<h3 class="text-lg font-semibold">مطور تطبيقات جوال حر | عملاء مستقلين</h3>
-							<p class="text-gray-600 mb-4">2022 – الحاضر</p>
-							<ul class="list-disc pl-5 space-y-2 text-gray-700">
-								<li>طورت تطبيق Easy Store لإدارة المخازن يشمل البيع والشراء، الموردين، ونظام محاسبي متكامل.</li>
-								<li>أعمل حاليًا على تطوير تطبيق Drop Shopping للتجارة الإلكترونية (E-commerce) لتسهيل البيع عبر الإنترنت.</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+    <div class="px-5 py-3 flex flex-col text-sm font-medium">
+      <a href="#about"      class="py-2.5" data-i18n="nav.about">About</a>
+      <a href="#skills"     class="py-2.5" data-i18n="nav.skills">Skills</a>
+      <a href="#experience" class="py-2.5" data-i18n="nav.experience">Experience</a>
+      <a href="#projects"   class="py-2.5" data-i18n="nav.projects">Projects</a>
+      <a href="#services"   class="py-2.5" data-i18n="nav.services">Services</a>
+      <a href="#contact"    class="py-2.5" data-i18n="nav.contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-	<!-- Skills Section -->
-	<section id="skills" class="py-20 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold">Skills & Tools</h2>
-				<p class="text-gray-600 hidden" id="skillsSubtitle">المهارات والأدوات</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
-					<h3 class="text-xl font-semibold mb-4">Professional Skills</h3>
-					<ul class="space-y-2 text-gray-700">
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Problem Solving</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Teamwork</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Time Management</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Effective Communication</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Rapid Learning</li>
-					</ul>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="professionalSkillsArabic">
-					<h3 class="text-xl font-semibold mb-4">المهارات العامة</h3>
-					<ul class="space-y-2 text-gray-700">
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>حل المشكلات</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>العمل الجماعي</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>إدارة الوقت</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>التواصل الفعّال</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>التعلم السريع</li>
-					</ul>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
-					<h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<div>
-							<h4 class="font-medium text-teal-600 mb-2">Frontend / Mobile</h4>
-							<ul class="space-y-2 text-gray-700">
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Flutter & Dart</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>GetX & Cubit State Management</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Clean Architecture</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>UI/UX Design</li>
-							</ul>
-						</div>
-						<div>
-							<h4 class="font-medium text-teal-600 mb-2">Backend</h4>
-							<ul class="space-y-2 text-gray-700">
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>C# & .NET Core</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>REST API Development</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SignalR (Real-time)</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Entity Framework</li>
-							</ul>
-						</div>
-						<div>
-							<h4 class="font-medium text-teal-600 mb-2">Databases & Cloud</h4>
-							<ul class="space-y-2 text-gray-700">
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQL Server</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Firebase</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Supabase</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQLite</li>
-							</ul>
-						</div>
-						<div>
-							<h4 class="font-medium text-teal-600 mb-2">Tools & Integrations</h4>
-							<ul class="space-y-2 text-gray-700">
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Git & GitHub</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>RapidAPI Integrations</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Third-party APIs</li>
-								<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>VS Code & Android Studio</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="300" id="technicalSkillsArabic">
-					<h3 class="text-xl font-semibold mb-4">المهارات التقنية</h3>
-					<ul class="space-y-2 text-gray-700">
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Flutter & Dart</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>إدارة الحالة باستخدام GetX</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>واجهات برمجة التطبيقات (REST APIs)</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Firebase</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Supabase</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>SQLite</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Git & GitHub</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>Android Studio</li>
-						<li class="flex items-center"><i data-feather="check" class="text-teal-600 mr-2"></i>تصميم واجهات المستخدم (UI/UX)</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- ===================== HERO ===================== -->
+<header id="home" class="pt-28 pb-16 md:pt-36 md:pb-24 px-5">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-[1.6fr_1fr] items-center gap-10">
+    <div class="reveal">
+      <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-brand-600 mb-4">
+        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+        <span data-i18n="hero.badge">Cairo, Egypt · Open to opportunities</span>
+      </p>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+        Mohamed Hisham Abdelmajid
+      </h1>
+      <h2 class="mt-3 text-xl md:text-2xl font-semibold text-brand-600" data-i18n="hero.role">
+        Flutter Engineer · ASP.NET Core APIs
+      </h2>
+      <p class="mt-5 text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed" data-i18n="hero.bio">
+        I build production Android and iOS apps in Flutter, and the ASP.NET Core APIs behind them. Clean Architecture, Bloc/Cubit, real-time features over SignalR, and a release pipeline I automate myself with Fastlane and Shorebird code push.
+      </p>
 
-	<!-- Projects Section -->
-	<section id="projects" class="py-20 bg-gray-100 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold">My Projects</h2>
-				<p class="text-gray-600" id="projectsSubtitle">Here are some of the projects I'm proud to have worked on</p>
-				<p class="text-gray-600 hidden" id="projectsSubtitleArabic">هذه بعض المشاريع التي أفتخر بتنفيذها</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<!-- Saltk App -->
-				<div class="project-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up">
-					<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056385/photo_2026-02-02_20-19-32_g4wvwq.jpg" alt="Saltk App" class="project-img project-img-clickable w-full h-64 object-contain bg-gray-100 p-2" onclick="openLightbox(this.src)">
-					<div class="p-6 space-y-2">
-						<h3 class="text-xl font-semibold">Saltk - E-commerce & Dropshipping</h3>
-						<span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mb-2">Featured Project</span>
-						<p class="text-gray-700"><span class="font-medium">Type:</span> Full-Stack Project (Mobile + Backend)</p>
-						<p class="text-gray-700"><span class="font-medium">Role:</span> Full-Stack Developer</p>
-						<p class="text-gray-700"><span class="font-medium">Description:</span> A hybrid E-commerce & Dropshipping platform that aggregates products from Alibaba, Amazon, AliExpress, and Shein via RapidAPI. Users can also add their own local products to create a complete marketplace.</p>
-						<p class="text-gray-700"><span class="font-medium">Key Features:</span></p>
-						<ul class="list-disc pl-5 text-gray-600 text-sm">
-							<li>Multi-platform product aggregation via APIs</li>
-							<li>Local product management</li>
-							<li>Complete order management system</li>
-							<li>Real-time notifications</li>
-						</ul>
-						<div class="flex flex-wrap gap-2 pt-2">
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Flutter</span>
-							<span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">.NET/C#</span>
-							<span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">REST API</span>
-							<span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">RapidAPI</span>
-						</div>
-					</div>
-				</div>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="#projects" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-3 rounded-xl font-semibold text-sm transition" data-i18n="hero.cta1">View my work</a>
+        <a href="#contact" class="border-2 border-slate-300 dark:border-slate-700 hover:border-brand-600 hover:text-brand-600 px-5 py-3 rounded-xl font-semibold text-sm transition" data-i18n="hero.cta2">Get in touch</a>
+      </div>
 
-				<!-- Saltk Admin Dashboard -->
-				<div class="project-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-					<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056275/Screenshot_56_elqsdx.png" alt="Saltk Admin Dashboard" class="project-img project-img-clickable w-full h-64 object-contain bg-gray-100 p-2" onclick="openLightbox(this.src)">
-					<div class="p-6 space-y-2">
-						<h3 class="text-xl font-semibold">Saltk Admin Dashboard</h3>
-						<span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mb-2">Featured Project</span>
-						<p class="text-gray-700"><span class="font-medium">Type:</span> Desktop Admin Panel</p>
-						<p class="text-gray-700"><span class="font-medium">Role:</span> Full-Stack Developer</p>
-						<p class="text-gray-700"><span class="font-medium">Description:</span> Comprehensive admin dashboard for managing the Saltk e-commerce platform with real-time updates via SignalR.</p>
-						<p class="text-gray-700"><span class="font-medium">Key Features:</span></p>
-						<ul class="list-disc pl-5 text-gray-600 text-sm">
-							<li>Live orders with real-time SignalR updates</li>
-							<li>Customer & order management</li>
-							<li>Coupons & promotions system</li>
-							<li>Analytics & dashboard stats</li>
-							<li>Multi-language support (AR/EN)</li>
-							<li>Role-based access (SuperAdmin/Admin)</li>
-							<li>Keyboard shortcuts (Ctrl+1-9)</li>
-						</ul>
-						<div class="flex flex-wrap gap-2 pt-2">
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Flutter Desktop</span>
-							<span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">.NET/C#</span>
-							<span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">SignalR</span>
-							<span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Firebase</span>
-						</div>
-					</div>
-				</div>
+      <dl class="mt-10 grid grid-cols-3 gap-5 max-w-xl">
+        <div class="border-s-2 border-brand-500/60 ps-3">
+          <dt class="text-xl font-extrabold text-slate-900 dark:text-white whitespace-nowrap">4+</dt>
+          <dd class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="hero.stat1">Years building apps</dd>
+        </div>
+        <div class="border-s-2 border-brand-500/60 ps-3">
+          <dt class="text-xl font-extrabold text-slate-900 dark:text-white whitespace-nowrap">iOS + Android</dt>
+          <dd class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="hero.stat2">Shipped to both platforms</dd>
+        </div>
+        <div class="border-s-2 border-brand-500/60 ps-3">
+          <dt class="text-xl font-extrabold text-slate-900 dark:text-white whitespace-nowrap">AR / EN</dt>
+          <dd class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="hero.stat3">Bilingual apps with full RTL</dd>
+        </div>
+      </dl>
+    </div>
 
-				<!-- Easy Store -->
-				<div class="project-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-					<img src="https://dkwczobptpbpuahdprgg.supabase.co/storage/v1/object/public/easystroretrail/screen1.png" alt="Easy Store" class="project-img project-img-clickable w-full h-64 object-contain bg-gray-100 p-2" onclick="openLightbox(this.src)">
-					<div class="p-6 space-y-2">
-						<h3 class="text-xl font-semibold">Easy Store</h3>
-						<p class="text-gray-700"><span class="font-medium">Type:</span> Mobile + Web App</p>
-						<p class="text-gray-700"><span class="font-medium">Role:</span> Lead Developer</p>
-						<p class="text-gray-700"><span class="font-medium">Problem:</span> Client needed a system to track fabric inventory by color and quantity, replacing manual Excel tracking.</p>
-						<p class="text-gray-700"><span class="font-medium">Solution:</span> Built a cross-platform Flutter app with color picker, full inventory, sales, purchases, accounting, and customer modules.</p>
-						<p class="text-gray-700"><span class="font-medium">Impact:</span> Reduced manual errors by 90%, improved inventory accuracy, enabled remote access.</p>
-						<div class="flex flex-wrap gap-2 pt-2">
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">Flutter</span>
-							<span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">GetX</span>
-							<span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Firebase</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <div class="flex justify-center md:justify-end reveal">
+      <div class="relative">
+        <div class="absolute -inset-3 rounded-full bg-gradient-to-tr from-brand-500/25 to-transparent blur-xl"></div>
+        <img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1758127770/WhatsApp_Image_2025-09-17_at_19.47.27_bbc99243_wzl7ey.jpg"
+             alt="Mohamed Hisham Abdelmajid"
+             class="relative w-44 h-44 md:w-56 md:h-56 rounded-full object-cover ring-4 ring-white dark:ring-slate-900 shadow-xl">
+      </div>
+    </div>
+  </div>
+</header>
 
-	<!-- Certifications Section -->
-	<section id="certifications" class="py-20 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold">Certifications</h2>
-				<p class="text-gray-600">Professional certifications and training programs</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<!-- NTI Certificate -->
-				<div class="certificate-card bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up">
-					<img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056826/photo_2026-02-02_20-26-51_nmgpf7.jpg" alt="NTI Certificate" class="project-img-clickable w-full h-56 object-contain bg-gradient-to-br from-yellow-50 to-orange-50 p-3" onclick="openLightbox(this.src)">
-					<div class="p-6">
-						<div class="flex items-center justify-between mb-3">
-							<h3 class="text-xl font-semibold text-teal-600">Mobile App Development</h3>
-							<span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full font-bold">100%</span>
-						</div>
-						<p class="text-gray-700 font-medium mb-2">Digital Egypt Youth Program</p>
-						<p class="text-gray-600 text-sm mb-3">National Telecommunication Institute (NTI)</p>
-						<div class="space-y-1 text-sm text-gray-600">
-							<p><i data-feather="calendar" class="inline w-4 h-4 mr-1"></i> July 2025 – September 2025</p>
-							<p><i data-feather="clock" class="inline w-4 h-4 mr-1"></i> Technical Hours: 90 hrs</p>
-							<p><i data-feather="briefcase" class="inline w-4 h-4 mr-1"></i> Freelancing: 30 hrs (Coaching with Gigs)</p>
-						</div>
-						<div class="flex flex-wrap gap-2 pt-4">
-							<span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Ministry of ICT</span>
-							<span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">NTI</span>
-							<span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded-full">Creativa</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="py-20 px-5 bg-white dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal max-w-3xl">
+      <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white" data-i18n="about.title">About</h2>
+      <p class="mt-5 text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="about.p1">
+        I work across the whole product, not just the screen. On the client I own architecture, state, networking and the release path. On the server I have built and shipped a .NET 8 REST API with PostgreSQL, JWT auth with refresh-token rotation, SignalR hubs and third-party marketplace integrations.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="about.p2">
+        Because I have written both halves of the same features, I design the boundary between them deliberately: what the server should own, what the client should cache, and what a mobile app should do when the network disagrees with it.
+      </p>
+    </div>
 
-	<!-- Testimonials Section -->
-	<section id="testimonials" class="py-20 bg-gray-100 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold">Client Testimonials</h2>
-				<p class="text-gray-600 hidden" id="testimonialsSubtitle">آراء العملاء</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
-					<p class="italic text-gray-700">"Working with you was excellent. You delivered the app ahead of schedule with high quality. It runs smoothly and is very easy to use. I'm extremely satisfied with the result."</p>
-					<div class="mt-4 text-sm text-gray-600">Ahmed, Owner of Easy Store</div>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow hidden" data-aos="fade-up" data-aos-delay="100" id="testimonialArabic">
-					<p class="italic text-gray-700">"التعامل معاك كان ممتاز، سلّمت التطبيق قبل الميعاد وبجودة عالية. التطبيق شغال بسلاسة وسهل الاستخدام، وأنا مبسوط جدًا من النتيجة."</p>
-					<div class="mt-4 text-sm text-gray-600">أحمد، صاحب مشروع إيزي ستور</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="layers" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-slate-900 dark:text-white text-sm" data-i18n="about.c1t">Architecture that holds</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="about.c1b">Clean Architecture in vertical feature slices, with module boundaries enforced by tooling rather than by memory.</p>
+      </div>
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="git-merge" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-slate-900 dark:text-white text-sm" data-i18n="about.c2t">Both ends of the wire</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="about.c2b">I have written the token-refresh server and the client interceptor that consumes it, so contracts are designed, not guessed.</p>
+      </div>
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="upload-cloud" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-slate-900 dark:text-white text-sm" data-i18n="about.c3t">Shipping is part of the job</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="about.c3b">Build flavors, signed releases, Fastlane lanes and over-the-air patches on both platforms.</p>
+      </div>
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="globe" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-slate-900 dark:text-white text-sm" data-i18n="about.c4t">Arabic as a first language</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="about.c4b">Full RTL layouts and per-string text direction, so mixed Arabic and English content renders correctly.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-	<!-- Services Section -->
-	<section id="services" class="py-20 bg-gray-100 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-12" data-aos="fade-up">
-				<h2 class="text-3xl font-bold" id="services_title">Services I Offer</h2>
-				<p class="text-gray-600 hidden" id="services_title_arabic">الخدمات التي أقدمها</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
-					<i data-feather="smartphone" class="text-teal-600 mb-3"></i>
-					<h4 class="font-semibold mb-2">Mobile App Development</h4>
-					<p class="text-gray-700 text-sm">Build cross-platform mobile apps with Flutter (Android & iOS) with modern UI/UX</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
-					<i data-feather="server" class="text-teal-600 mb-3"></i>
-					<h4 class="font-semibold mb-2">Backend Development</h4>
-					<p class="text-gray-700 text-sm">Build robust REST APIs using .NET/C# with clean architecture and best practices</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
-					<i data-feather="monitor" class="text-teal-600 mb-3"></i>
-					<h4 class="font-semibold mb-2">Admin Dashboards</h4>
-					<p class="text-gray-700 text-sm">Create comprehensive admin panels (Desktop/Web) with real-time features using SignalR</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
-					<i data-feather="shopping-cart" class="text-teal-600 mb-3"></i>
-					<h4 class="font-semibold mb-2">E-commerce Solutions</h4>
-					<p class="text-gray-700 text-sm">Build complete e-commerce & dropshipping platforms with multi-vendor integration</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="400">
-					<i data-feather="link" class="text-teal-600 mb-3"></i>
-					<h4 class="font-semibold mb-2">API Integrations</h4>
-					<p class="text-gray-700 text-sm">Integrate third-party APIs (Alibaba, Amazon, AliExpress, Shein, RapidAPI)</p>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="500">
-					<i data-feather="database" class="text-teal-600 mb-3"></i>
-					<h4 class="font-semibold mb-2">Database Design</h4>
-					<p class="text-gray-700 text-sm">Design and implement databases (SQL Server, Firebase, Supabase, SQLite)</p>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- ===================== SKILLS ===================== -->
+<section id="skills" class="py-20 px-5">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white reveal" data-i18n="skills.title">Technical Skills</h2>
+    <p class="mt-2 text-slate-600 dark:text-slate-400 reveal" data-i18n="skills.sub">Things I have built with, not things I have read about.</p>
 
-	<!-- CTA Section -->
-	<section id="cta" class="py-16 bg-teal-600 text-white">
-		<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-			<div data-aos="fade-right">
-				<h3 class="text-2xl md:text-3xl font-semibold" id="cta_title">Ready to Start Your Project?</h3>
-				<p class="text-teal-100" id="cta_subtitle">Let's build something amazing together.</p>
-				<p class="text-teal-100 hidden" id="cta_subtitle_arabic">هنشوف معًا إيه اللي نقدر نبنيه معًا.</p>
-			</div>
-			<div class="flex gap-4" data-aos="fade-left">
-				<a href="mailto:moohmedhisshm@gmail.com" id="cta_contact" class="bg-white text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-lg font-medium">Contact Me</a>
-				<a href="#projects" id="cta_view_work" class="border-2 border-white hover:bg-white/10 px-5 py-3 rounded-lg font-medium">View My Work</a>
-			</div>
-		</div>
-	</section>
+    <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-	<!-- Footer -->
-	<footer class="bg-gray-900 text-white py-12 px-6">
-		<div class="max-w-7xl mx-auto">
-			<div class="flex flex-col md:flex-row justify-between items-center">
-				<div class="mb-6 md:mb-0">
-					<h2 class="text-2xl font-bold mb-1" id="footer_name">Mohamed Hisham Abdelmajid</h2>
-					<p class="text-gray-400" id="footer_title">Full-Stack Mobile & Backend Developer</p>
-					<p class="text-gray-400 mt-2">Email: moohmedhisshm@gmail.com | Phone: +20 121 855 485</p>
-				</div>
-				<div class="flex space-x-6 mb-6 md:mb-0">
-					<a href="https://github.com/Mohamedfgfff12" class="text-gray-400 hover:text-white transition" aria-label="GitHub"><i data-feather="github"></i></a>
-					<a href="https://www.linkedin.com/in/mohamed-hisham-1b2993352" class="text-gray-400 hover:text-white transition" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
-					<a href="mailto:moohmedhisshm@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Email"><i data-feather="mail"></i></a>
-				</div>
-				<div>
-					<a href="#home" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium">Back to Top</a>
-				</div>
-			</div>
-			<div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-				<p id="footer_copyright">© 2026 Mohamed Hisham Abdelmajid. All rights reserved.</p>
-			</div>
-		</div>
-	</footer>
+      <div class="reveal card-hover bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <div class="flex items-center gap-2.5 mb-4">
+          <i data-feather="smartphone" class="text-brand-600 w-5 h-5"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="skills.g1">Mobile</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">Flutter</span>
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">Dart</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Bloc / Cubit</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Clean Architecture</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">get_it DI</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">auto_route</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Dio</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">GetX</span>
+        </div>
+      </div>
 
-	<script>
-		// Lightbox functions
-		function openLightbox(src) {
-			document.getElementById('lightboxImg').src = src;
-			document.getElementById('lightboxOverlay').classList.remove('hidden');
-			document.body.style.overflow = 'hidden';
-		}
-		
-		function closeLightbox() {
-			document.getElementById('lightboxOverlay').classList.add('hidden');
-			document.body.style.overflow = 'auto';
-		}
-		
-		// Close lightbox on Escape key
-		document.addEventListener('keydown', function(e) {
-			if (e.key === 'Escape') closeLightbox();
-		});
-		
-		document.addEventListener('DOMContentLoaded', function () {
-			AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-			feather.replace();
-			const toggle = document.getElementById('mobileToggle');
-			const mobileMenu = document.getElementById('mobileMenu');
-			const languageToggle = document.getElementById('languageToggle');
-			const languageText = document.getElementById('languageText');
-			let isArabic = false;
-			
-			toggle.addEventListener('click', function(){ 
-				mobileMenu.classList.toggle('hidden'); 
-			});
-			
-			languageToggle.addEventListener('click', function() {
-				isArabic = !isArabic;
-				languageText.textContent = isArabic ? 'AR' : 'EN';
-				
-				// Toggle Arabic elements
-				document.getElementById('bioArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('aboutSubtitleArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('attribute1Arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('attribute2Arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('attribute3Arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('professionalSummaryTitleArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('professionalSummaryArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('educationArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('experienceArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('educationSubtitle').classList.toggle('hidden', isArabic);
-				document.getElementById('experienceSubtitle').classList.toggle('hidden', isArabic);
-				document.getElementById('skillsSubtitle').classList.toggle('hidden', isArabic);
-				document.getElementById('professionalSkillsArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('technicalSkillsArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('projectsSubtitleArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('projectArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('testimonialsSubtitle').classList.toggle('hidden', isArabic);
-				document.getElementById('testimonialArabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('services_title_arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('service_1_arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('service_2_arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('service_3_arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('service_4_arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('service_5_arabic').classList.toggle('hidden', !isArabic);
-				document.getElementById('cta_subtitle_arabic').classList.toggle('hidden', !isArabic);
-				
-				// Update the title of the services section
-				document.getElementById('services_title').classList.toggle('hidden', isArabic);
-			});
-			
-			document.querySelectorAll('a[href^="#"]').forEach(function(link){
-				link.addEventListener('click', function(){ 
-					mobileMenu.classList.add('hidden'); 
-				});
-			});
-		});
-	</script>
+      <div class="reveal card-hover bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <div class="flex items-center gap-2.5 mb-4">
+          <i data-feather="server" class="text-brand-600 w-5 h-5"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="skills.g2">Backend</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">ASP.NET Core 8</span>
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">C#</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">EF Core</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">REST API design</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">JWT + refresh rotation</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">SignalR hubs</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">FluentValidation</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">AutoMapper</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Swagger / OpenAPI</span>
+        </div>
+      </div>
+
+      <div class="reveal card-hover bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <div class="flex items-center gap-2.5 mb-4">
+          <i data-feather="database" class="text-brand-600 w-5 h-5"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="skills.g3">Data &amp; Storage</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">PostgreSQL</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">SQL Server</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">SQLite</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Firebase</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Supabase</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Secure storage</span>
+        </div>
+      </div>
+
+      <div class="reveal card-hover bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <div class="flex items-center gap-2.5 mb-4">
+          <i data-feather="upload-cloud" class="text-brand-600 w-5 h-5"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="skills.g4">Release &amp; Tooling</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">Fastlane</span>
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">Shorebird code push</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Firebase App Distribution</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Build flavors</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Gradle signing</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Git / GitHub</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Custom analyzer plugin</span>
+        </div>
+      </div>
+
+      <div class="reveal card-hover bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <div class="flex items-center gap-2.5 mb-4">
+          <i data-feather="activity" class="text-brand-600 w-5 h-5"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="skills.g5">Realtime &amp; Monitoring</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          <span class="px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400">SignalR</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Firebase Cloud Messaging</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Sentry</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Health checks</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Structured logging</span>
+        </div>
+      </div>
+
+      <div class="reveal card-hover bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <div class="flex items-center gap-2.5 mb-4">
+          <i data-feather="link" class="text-brand-600 w-5 h-5"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="skills.g6">Integrations</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Google Maps &amp; Places</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">RapidAPI marketplaces</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Google Sign-In</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">HMAC request signing</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">SMTP / MailKit</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Postman</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ENGINEERING HIGHLIGHTS ===================== -->
+<section class="py-20 px-5 bg-white dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white reveal" data-i18n="high.title">Engineering Highlights</h2>
+    <p class="mt-2 text-slate-600 dark:text-slate-400 reveal max-w-2xl" data-i18n="high.sub">Specific problems, and what I actually did about them.</p>
+
+    <div class="mt-10 grid md:grid-cols-2 gap-5">
+
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600" data-i18n="high.k1">Tooling</span>
+        <h3 class="mt-2 font-bold text-lg text-slate-900 dark:text-white" data-i18n="high.t1">Architecture rules the compiler checks</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="high.b1">
+          Code review is a bad place to enforce layering, because a tired reviewer misses an import. I wrote a native Dart analysis-server plugin with 17 rules, so a cross-module import or an off-design-system colour now fails <code class="text-brand-600">dart analyze</code>. Getting there meant solving a dependency conflict the usual lint packages could not: the plugin runs in its own isolate with its own analyzer version.
+        </p>
+      </article>
+
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600" data-i18n="high.k2">Release engineering</span>
+        <h3 class="mt-2 font-bold text-lg text-slate-900 dark:text-white" data-i18n="high.t2">A build tool that reported success and shipped nothing</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="high.b2">
+          Over-the-air patches were publishing as empty diffs while every command exited zero. The cause was Gradle treating the bundle task as up to date, so the packaged binary was the previous one. A second class of failure came from icon tree-shaking rewriting a font asset that a patch cannot carry. Both are now handled in the release lanes, on Android and iOS.
+        </p>
+      </article>
+
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600" data-i18n="high.k3">Auth, both ends</span>
+        <h3 class="mt-2 font-bold text-lg text-slate-900 dark:text-white" data-i18n="high.t3">One token rotation, not twenty</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="high.b3">
+          When a screen fires several requests at once and the token has expired, the naive client refreshes once per request. I built a single-flight interceptor: concurrent failures await one shared refresh, then every original request is replayed. On the server side I built the matching issue, rotate and revoke endpoints, so both halves agree on what a valid session means.
+        </p>
+      </article>
+
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+        <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600" data-i18n="high.k4">Cost &amp; performance</span>
+        <h3 class="mt-2 font-bold text-lg text-slate-900 dark:text-white" data-i18n="high.t4">Caching billed API calls, and cutting a frame budget</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="high.b4">
+          Marketplace search calls are billed per request and slow, so results are cached server-side instead of proxied straight through. On the client, a product card was spending about 18 ms per frame on anti-aliased clipping on a low-end Adreno GPU, over the 16.7 ms budget. Isolating it into its own raster layer brought it back under.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience" class="py-20 px-5">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white reveal" data-i18n="exp.title">Experience</h2>
+
+    <div class="mt-10 relative timeline">
+
+      <div class="relative ps-8 pb-12 reveal">
+        <span class="absolute inset-inline-start-0 start-0 top-1.5 w-4 h-4 rounded-full bg-brand-600 ring-4 ring-slate-50 dark:ring-slate-950"></span>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white" data-i18n="exp.r1">Flutter Developer — Mobile Applications</h3>
+            <span class="text-sm text-slate-500 dark:text-slate-400">Jan 2025 – <span data-i18n="exp.present">Present</span></span>
+          </div>
+          <p class="text-brand-600 font-semibold text-sm mt-1">Mass Technology Solutions (MTS) · Cairo, Egypt</p>
+
+          <p class="mt-5 font-bold text-slate-900 dark:text-white text-sm" data-i18n="exp.p1t">Consumer discovery &amp; comparison app <span class="font-normal text-slate-500 dark:text-slate-400">— unreleased, name withheld until launch</span></p>
+          <ul class="mt-2 space-y-2 text-sm text-slate-600 dark:text-slate-400 list-disc ps-5">
+            <li data-i18n="exp.p1a">Sole engineer on a 46k-line Flutter codebase of 10 feature modules, delivered on Android and iOS against a .NET/OpenAPI backend.</li>
+            <li data-i18n="exp.p1b">Designed a five-tier module layout and enforced it with a custom analyzer plugin, so architecture violations fail the build.</li>
+            <li data-i18n="exp.p1c">Built phone and OTP authentication with a single-flight token-refresh interceptor and request replay.</li>
+            <li data-i18n="exp.p1d">Added push-triggered over-the-air updates: a silent notification stages a patch so a fix is live on the next launch.</li>
+            <li data-i18n="exp.p1e">Shipped 374 localized strings in Arabic and English with full RTL, resolving names at read time so a language switch needs no refetch.</li>
+          </ul>
+
+          <p class="mt-5 font-bold text-slate-900 dark:text-white text-sm">Negma <span class="font-normal text-slate-500 dark:text-slate-400" data-i18n="exp.p2s">— enterprise orders, customers, products and branches</span></p>
+          <ul class="mt-2 space-y-2 text-sm text-slate-600 dark:text-slate-400 list-disc ps-5">
+            <li data-i18n="exp.p2a">Integrated .NET 8 REST APIs secured with JWT and Firebase App Check, with role-based screens mirroring the backend permission model.</li>
+            <li data-i18n="exp.p2b">Delivered real-time order status over SignalR behind a hub-client interface with automatic reconnect and token-factory handshake auth.</li>
+            <li data-i18n="exp.p2c">Automated build delivery to QA with Fastlane and Firebase App Distribution.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="relative ps-8 reveal">
+        <span class="absolute start-0 top-1.5 w-4 h-4 rounded-full bg-brand-600 ring-4 ring-slate-50 dark:ring-slate-950"></span>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white" data-i18n="exp.r2">Full-Stack Developer — Freelance</h3>
+            <span class="text-sm text-slate-500 dark:text-slate-400">2022 – <span data-i18n="exp.present">Present</span></span>
+          </div>
+          <p class="text-brand-600 font-semibold text-sm mt-1" data-i18n="exp.r2s">Self-employed · Remote</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-400 list-disc ps-5">
+            <li data-i18n="exp.f1">Designed and built the Saltk platform end to end: the Flutter customer app, a Flutter desktop admin dashboard, and the ASP.NET Core 8 API and PostgreSQL schema behind both.</li>
+            <li data-i18n="exp.f2">Built the API as 24 controllers over 27 entities with EF Core migrations, FluentValidation, AutoMapper and two Swagger surfaces, one for mobile and one for the dashboard.</li>
+            <li data-i18n="exp.f3">Delivered Easy Store, an inventory and accounting app that replaced a fabric business's manual spreadsheet workflow.</li>
+            <li data-i18n="exp.f4">Ran the full client cycle alone: data model, architecture, API, app and delivery.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects" class="py-20 px-5 bg-white dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white reveal" data-i18n="proj.title">Projects</h2>
+    <p class="mt-2 text-slate-600 dark:text-slate-400 reveal" data-i18n="proj.sub">Click any screenshot to enlarge it.</p>
+
+    <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Saltk platform -->
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden flex flex-col">
+        <img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056385/photo_2026-02-02_20-19-32_g4wvwq.jpg"
+             alt="Saltk e-commerce app" loading="lazy"
+             class="w-full h-56 object-contain bg-white dark:bg-slate-800 p-2 cursor-zoom-in" onclick="openLightbox(this.src)">
+        <div class="p-6 flex-1 flex flex-col">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Saltk</h3>
+            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-600 text-white px-2 py-0.5 rounded-full" data-i18n="proj.featured">Featured</span>
+          </div>
+          <p class="text-xs font-semibold text-brand-600 mt-1" data-i18n="proj.s1r">Full-stack · mobile app + API</p>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400 flex-1" data-i18n="proj.s1d">
+            An e-commerce and dropshipping platform that aggregates products from Alibaba, Amazon, AliExpress and Shein, alongside local sellers. I built the Flutter app and the ASP.NET Core API: JWT auth with refresh rotation, two-step and Google login, order and cart flows, coupons, and a server-side cache in front of the billed marketplace search calls.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-4">
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 font-medium">Flutter</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">ASP.NET Core 8</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">PostgreSQL</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">EF Core</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">RapidAPI</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Saltk dashboard -->
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden flex flex-col">
+        <img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056275/Screenshot_56_elqsdx.png"
+             alt="Saltk admin dashboard" loading="lazy"
+             class="w-full h-56 object-contain bg-white dark:bg-slate-800 p-2 cursor-zoom-in" onclick="openLightbox(this.src)">
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white">Saltk Admin Dashboard</h3>
+          <p class="text-xs font-semibold text-brand-600 mt-1" data-i18n="proj.s2r">Flutter desktop · real-time operations</p>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400 flex-1" data-i18n="proj.s2d">
+            The operations side of Saltk. Orders arrive live over SignalR hubs I wrote on the server and consume in the client, so staff see a new order without refreshing. Includes customer and order management, coupons, analytics, Arabic and English, role-based access, and keyboard shortcuts for the people who use it all day.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-4">
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 font-medium">Flutter Desktop</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">SignalR</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">ASP.NET Core</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">Firebase</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Confidential -->
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden flex flex-col">
+        <div class="w-full h-56 bg-gradient-to-br from-slate-800 to-slate-900 dark:from-slate-800 dark:to-slate-950 flex flex-col items-center justify-center gap-2">
+          <i data-feather="lock" class="text-brand-400 w-8 h-8"></i>
+          <p class="text-xs text-slate-400 font-medium" data-i18n="proj.s3badge">Under NDA until launch</p>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white" data-i18n="proj.s3t">Consumer Discovery App</h3>
+          <p class="text-xs font-semibold text-brand-600 mt-1" data-i18n="proj.s3r">Flutter · Android &amp; iOS · unreleased</p>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400 flex-1" data-i18n="proj.s3d">
+            A bilingual consumer app I am the sole engineer on: browse, filter, map and compare listings, over a .NET backend. It is where the analyzer plugin, the code-push pipeline and the single-flight refresh interceptor described above actually run. I can walk through the architecture in an interview; the product name stays private until it ships.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-4">
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 font-medium">Flutter</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">Cubit</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">Google Maps</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">Shorebird</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">Sentry</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Easy Store -->
+      <article class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden flex flex-col">
+        <img src="https://dkwczobptpbpuahdprgg.supabase.co/storage/v1/object/public/easystroretrail/screen1.png"
+             alt="Easy Store app" loading="lazy"
+             class="w-full h-56 object-contain bg-white dark:bg-slate-800 p-2 cursor-zoom-in" onclick="openLightbox(this.src)">
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white">Easy Store</h3>
+          <p class="text-xs font-semibold text-brand-600 mt-1" data-i18n="proj.s4r">Flutter · inventory &amp; accounting</p>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400 flex-1" data-i18n="proj.s4d">
+            A fabric business was tracking stock by colour and quantity in spreadsheets. I built them a cross-platform app with a colour picker, full sales, purchasing and supplier modules, and an accounting engine covering daily profit and loss, expenses and debts, with Firebase sync so the owner can check stock away from the shop.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-4">
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 font-medium">Flutter</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">SQLite</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">Firebase</span>
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 font-medium">GetX</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EDUCATION + CERTIFICATION ===================== -->
+<section class="py-20 px-5">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+
+    <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+      <div class="flex items-center gap-2.5 mb-4">
+        <i data-feather="book-open" class="text-brand-600 w-5 h-5"></i>
+        <h2 class="text-xl font-extrabold text-slate-900 dark:text-white" data-i18n="edu.title">Education</h2>
+      </div>
+      <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="edu.deg">B.Sc. Educational Technology — Computer Systems Major</h3>
+      <p class="text-sm text-brand-600 font-medium mt-1" data-i18n="edu.uni">Zagazig University, Sharkia · 2021 – 2026</p>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-2" data-i18n="edu.det">Grade: Very Good. Software engineering, databases and algorithms.</p>
+    </div>
+
+    <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+      <div class="flex items-center gap-2.5 mb-4">
+        <i data-feather="award" class="text-brand-600 w-5 h-5"></i>
+        <h2 class="text-xl font-extrabold text-slate-900 dark:text-white" data-i18n="cert.title">Certification</h2>
+      </div>
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="cert.name">Mobile App Development</h3>
+          <p class="text-sm text-brand-600 font-medium mt-1">Digital Egypt Youth Program · NTI, Ministry of ICT</p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-2" data-i18n="cert.det">Jul – Sep 2025 · 90 technical hours · 30 freelancing hours</p>
+        </div>
+        <span class="shrink-0 bg-brand-600 text-white text-sm font-bold px-3 py-1 rounded-full">100%</span>
+      </div>
+      <img src="https://res.cloudinary.com/dyo7hsfly/image/upload/v1770056826/photo_2026-02-02_20-26-51_nmgpf7.jpg"
+           alt="NTI certificate" loading="lazy"
+           class="mt-4 w-full h-40 object-contain bg-slate-50 dark:bg-slate-800 rounded-xl p-2 cursor-zoom-in" onclick="openLightbox(this.src)">
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services" class="py-20 px-5 bg-white dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white reveal" data-i18n="srv.title">Freelance Services</h2>
+    <p class="mt-2 text-slate-600 dark:text-slate-400 reveal max-w-2xl" data-i18n="srv.sub">Available for project work alongside my full-time role.</p>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="smartphone" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-sm text-slate-900 dark:text-white" data-i18n="srv.1t">Mobile apps</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="srv.1b">Cross-platform Flutter apps for Android and iOS, built to survive being maintained.</p>
+      </div>
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="server" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-sm text-slate-900 dark:text-white" data-i18n="srv.2t">REST APIs</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="srv.2b">ASP.NET Core services with a real auth story, validation, migrations and Swagger docs.</p>
+      </div>
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="monitor" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-sm text-slate-900 dark:text-white" data-i18n="srv.3t">Admin dashboards</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="srv.3b">Operations panels with live updates over SignalR and role-based access.</p>
+      </div>
+      <div class="reveal card-hover bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <i data-feather="upload-cloud" class="text-brand-600 w-5 h-5"></i>
+        <h3 class="mt-3 font-bold text-sm text-slate-900 dark:text-white" data-i18n="srv.4t">Release setup</h3>
+        <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400" data-i18n="srv.4b">Flavors, signing, Fastlane lanes and over-the-air updates, so shipping stops being an event.</p>
+      </div>
+    </div>
+
+    <figure class="reveal mt-8 bg-slate-50 dark:bg-slate-900 border-s-4 border-brand-600 rounded-e-2xl p-6 max-w-3xl">
+      <blockquote class="italic text-slate-700 dark:text-slate-300" data-i18n="srv.quote">
+        “Working with you was excellent. You delivered the app ahead of schedule with high quality. It runs smoothly and is very easy to use. I'm extremely satisfied with the result.”
+      </blockquote>
+      <figcaption class="mt-3 text-sm text-slate-500 dark:text-slate-400" data-i18n="srv.quoteby">Ahmed — owner, Easy Store</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="py-20 px-5">
+  <div class="max-w-3xl mx-auto text-center reveal">
+    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white" data-i18n="ct.title">Let's talk</h2>
+    <p class="mt-3 text-slate-600 dark:text-slate-400" data-i18n="ct.sub">
+      Open to Flutter and full-stack roles, and to freelance projects. The fastest way to reach me is email.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="mailto:mohmedhisshm@gmail.com" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-3 rounded-xl font-semibold text-sm transition">
+        <i data-feather="mail" class="w-4 h-4"></i> mohmedhisshm@gmail.com
+      </a>
+      <a href="https://wa.me/201007932894" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border-2 border-slate-300 dark:border-slate-700 hover:border-brand-600 hover:text-brand-600 px-5 py-3 rounded-xl font-semibold text-sm transition">
+        <i data-feather="message-circle" class="w-4 h-4"></i> WhatsApp
+      </a>
+      <a href="https://github.com/Mohmed-Hisham" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border-2 border-slate-300 dark:border-slate-700 hover:border-brand-600 hover:text-brand-600 px-5 py-3 rounded-xl font-semibold text-sm transition">
+        <i data-feather="github" class="w-4 h-4"></i> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/mohamed-hisham-1b2993352" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border-2 border-slate-300 dark:border-slate-700 hover:border-brand-600 hover:text-brand-600 px-5 py-3 rounded-xl font-semibold text-sm transition">
+        <i data-feather="linkedin" class="w-4 h-4"></i> LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="border-t border-slate-200 dark:border-slate-800 py-10 px-5 bg-white dark:bg-slate-950">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+    <div class="text-center sm:text-start">
+      <p class="font-bold text-slate-900 dark:text-white">Mohamed Hisham Abdelmajid</p>
+      <p class="text-slate-500 dark:text-slate-400" data-i18n="foot.role">Flutter Engineer · ASP.NET Core APIs · Cairo, Egypt</p>
+    </div>
+    <p class="text-slate-500 dark:text-slate-400">© <span id="year">2026</span> · <span data-i18n="foot.rights">All rights reserved</span></p>
+  </div>
+</footer>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+  <button class="absolute top-5 end-6 text-white text-4xl leading-none" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+/* ------------------------------------------------------------------ theme */
+(function () {
+  const stored = localStorage.getItem('theme');
+  const dark = stored ? stored === 'dark'
+                      : matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.classList.toggle('dark', dark);
+})();
+
+/* ------------------------------------------------------------------- i18n */
+const I18N = {
+  'nav.about':'About','nav.skills':'Skills','nav.experience':'Experience','nav.projects':'Projects','nav.services':'Services','nav.contact':'Contact',
+
+  'hero.badge':'Cairo, Egypt · Open to opportunities',
+  'hero.role':'Flutter Engineer · ASP.NET Core APIs',
+  'hero.bio':'I build production Android and iOS apps in Flutter, and the ASP.NET Core APIs behind them. Clean Architecture, Bloc/Cubit, real-time features over SignalR, and a release pipeline I automate myself with Fastlane and Shorebird code push.',
+  'hero.cta1':'View my work','hero.cta2':'Get in touch',
+  'hero.stat1':'Years building apps','hero.stat2':"Shipped to both platforms",'hero.stat3':'Bilingual apps with full RTL',
+
+  'about.title':'About',
+  'about.p1':'I work across the whole product, not just the screen. On the client I own architecture, state, networking and the release path. On the server I have built and shipped a .NET 8 REST API with PostgreSQL, JWT auth with refresh-token rotation, SignalR hubs and third-party marketplace integrations.',
+  'about.p2':'Because I have written both halves of the same features, I design the boundary between them deliberately: what the server should own, what the client should cache, and what a mobile app should do when the network disagrees with it.',
+  'about.c1t':'Architecture that holds','about.c1b':'Clean Architecture in vertical feature slices, with module boundaries enforced by tooling rather than by memory.',
+  'about.c2t':'Both ends of the wire','about.c2b':'I have written the token-refresh server and the client interceptor that consumes it, so contracts are designed, not guessed.',
+  'about.c3t':'Shipping is part of the job','about.c3b':'Build flavors, signed releases, Fastlane lanes and over-the-air patches on both platforms.',
+  'about.c4t':'Arabic as a first language','about.c4b':'Full RTL layouts and per-string text direction, so mixed Arabic and English content renders correctly.',
+
+  'skills.title':'Technical Skills','skills.sub':'Things I have built with, not things I have read about.',
+  'skills.g1':'Mobile','skills.g2':'Backend','skills.g3':'Data & Storage','skills.g4':'Release & Tooling','skills.g5':'Realtime & Monitoring','skills.g6':'Integrations',
+
+  'high.title':'Engineering Highlights','high.sub':'Specific problems, and what I actually did about them.',
+  'high.k1':'Tooling','high.t1':'Architecture rules the compiler checks',
+  'high.b1':'Code review is a bad place to enforce layering, because a tired reviewer misses an import. I wrote a native Dart analysis-server plugin with 17 rules, so a cross-module import or an off-design-system colour now fails dart analyze. Getting there meant solving a dependency conflict the usual lint packages could not: the plugin runs in its own isolate with its own analyzer version.',
+  'high.k2':'Release engineering','high.t2':'A build tool that reported success and shipped nothing',
+  'high.b2':'Over-the-air patches were publishing as empty diffs while every command exited zero. The cause was Gradle treating the bundle task as up to date, so the packaged binary was the previous one. A second class of failure came from icon tree-shaking rewriting a font asset that a patch cannot carry. Both are now handled in the release lanes, on Android and iOS.',
+  'high.k3':'Auth, both ends','high.t3':'One token rotation, not twenty',
+  'high.b3':'When a screen fires several requests at once and the token has expired, the naive client refreshes once per request. I built a single-flight interceptor: concurrent failures await one shared refresh, then every original request is replayed. On the server side I built the matching issue, rotate and revoke endpoints, so both halves agree on what a valid session means.',
+  'high.k4':'Cost & performance','high.t4':'Caching billed API calls, and cutting a frame budget',
+  'high.b4':'Marketplace search calls are billed per request and slow, so results are cached server-side instead of proxied straight through. On the client, a product card was spending about 18 ms per frame on anti-aliased clipping on a low-end Adreno GPU, over the 16.7 ms budget. Isolating it into its own raster layer brought it back under.',
+
+  'exp.title':'Experience','exp.present':'Present',
+  'exp.r1':'Flutter Developer — Mobile Applications',
+  'exp.p1t':'Consumer discovery & comparison app',
+  'exp.p1a':'Sole engineer on a 46k-line Flutter codebase of 10 feature modules, delivered on Android and iOS against a .NET/OpenAPI backend.',
+  'exp.p1b':'Designed a five-tier module layout and enforced it with a custom analyzer plugin, so architecture violations fail the build.',
+  'exp.p1c':'Built phone and OTP authentication with a single-flight token-refresh interceptor and request replay.',
+  'exp.p1d':'Added push-triggered over-the-air updates: a silent notification stages a patch so a fix is live on the next launch.',
+  'exp.p1e':'Shipped 374 localized strings in Arabic and English with full RTL, resolving names at read time so a language switch needs no refetch.',
+  'exp.p2s':'— enterprise orders, customers, products and branches',
+  'exp.p2a':'Integrated .NET 8 REST APIs secured with JWT and Firebase App Check, with role-based screens mirroring the backend permission model.',
+  'exp.p2b':'Delivered real-time order status over SignalR behind a hub-client interface with automatic reconnect and token-factory handshake auth.',
+  'exp.p2c':'Automated build delivery to QA with Fastlane and Firebase App Distribution.',
+  'exp.r2':'Full-Stack Developer — Freelance','exp.r2s':'Self-employed · Remote',
+  'exp.f1':'Designed and built the Saltk platform end to end: the Flutter customer app, a Flutter desktop admin dashboard, and the ASP.NET Core 8 API and PostgreSQL schema behind both.',
+  'exp.f2':'Built the API as 24 controllers over 27 entities with EF Core migrations, FluentValidation, AutoMapper and two Swagger surfaces, one for mobile and one for the dashboard.',
+  'exp.f3':"Delivered Easy Store, an inventory and accounting app that replaced a fabric business's manual spreadsheet workflow.",
+  'exp.f4':'Ran the full client cycle alone: data model, architecture, API, app and delivery.',
+
+  'proj.title':'Projects','proj.sub':'Click any screenshot to enlarge it.','proj.featured':'Featured',
+  'proj.s1r':'Full-stack · mobile app + API',
+  'proj.s1d':'An e-commerce and dropshipping platform that aggregates products from Alibaba, Amazon, AliExpress and Shein, alongside local sellers. I built the Flutter app and the ASP.NET Core API: JWT auth with refresh rotation, two-step and Google login, order and cart flows, coupons, and a server-side cache in front of the billed marketplace search calls.',
+  'proj.s2r':'Flutter desktop · real-time operations',
+  'proj.s2d':'The operations side of Saltk. Orders arrive live over SignalR hubs I wrote on the server and consume in the client, so staff see a new order without refreshing. Includes customer and order management, coupons, analytics, Arabic and English, role-based access, and keyboard shortcuts for the people who use it all day.',
+  'proj.s3badge':'Under NDA until launch','proj.s3t':'Consumer Discovery App','proj.s3r':'Flutter · Android & iOS · unreleased',
+  'proj.s3d':'A bilingual consumer app I am the sole engineer on: browse, filter, map and compare listings, over a .NET backend. It is where the analyzer plugin, the code-push pipeline and the single-flight refresh interceptor described above actually run. I can walk through the architecture in an interview; the product name stays private until it ships.',
+  'proj.s4r':'Flutter · inventory & accounting',
+  'proj.s4d':'A fabric business was tracking stock by colour and quantity in spreadsheets. I built them a cross-platform app with a colour picker, full sales, purchasing and supplier modules, and an accounting engine covering daily profit and loss, expenses and debts, with Firebase sync so the owner can check stock away from the shop.',
+
+  'edu.title':'Education','edu.deg':'B.Sc. Educational Technology — Computer Systems Major','edu.uni':'Zagazig University, Sharkia · 2021 – 2026','edu.det':'Grade: Very Good. Software engineering, databases and algorithms.',
+  'cert.title':'Certification','cert.name':'Mobile App Development','cert.det':'Jul – Sep 2025 · 90 technical hours · 30 freelancing hours',
+
+  'srv.title':'Freelance Services','srv.sub':'Available for project work alongside my full-time role.',
+  'srv.1t':'Mobile apps','srv.1b':'Cross-platform Flutter apps for Android and iOS, built to survive being maintained.',
+  'srv.2t':'REST APIs','srv.2b':'ASP.NET Core services with a real auth story, validation, migrations and Swagger docs.',
+  'srv.3t':'Admin dashboards','srv.3b':'Operations panels with live updates over SignalR and role-based access.',
+  'srv.4t':'Release setup','srv.4b':'Flavors, signing, Fastlane lanes and over-the-air updates, so shipping stops being an event.',
+  'srv.quote':'“Working with you was excellent. You delivered the app ahead of schedule with high quality. It runs smoothly and is very easy to use. I\'m extremely satisfied with the result.”',
+  'srv.quoteby':'Ahmed — owner, Easy Store',
+
+  'ct.title':"Let's talk",'ct.sub':'Open to Flutter and full-stack roles, and to freelance projects. The fastest way to reach me is email.',
+  'foot.role':'Flutter Engineer · ASP.NET Core APIs · Cairo, Egypt','foot.rights':'All rights reserved'
+};
+
+const I18N_AR = {
+  'nav.about':'نبذة','nav.skills':'المهارات','nav.experience':'الخبرة','nav.projects':'المشاريع','nav.services':'الخدمات','nav.contact':'تواصل',
+
+  'hero.badge':'القاهرة، مصر · متاح لفرص العمل',
+  'hero.role':'مهندس Flutter · واجهات ASP.NET Core',
+  'hero.bio':'أبني تطبيقات إنتاجية لأندرويد و iOS بلغة Flutter، وأبني كذلك واجهات ASP.NET Core التي تقف خلفها. معماريّة نظيفة، إدارة حالة بـ Bloc/Cubit، ميزات لحظية عبر SignalR، وخط إصدار أتمتته بنفسي باستخدام Fastlane و Shorebird.',
+  'hero.cta1':'شاهد أعمالي','hero.cta2':'تواصل معي',
+  'hero.stat1':'سنوات في بناء التطبيقات','hero.stat2':'إصدارات على المنصتين','hero.stat3':'تطبيقات ثنائية اللغة بدعم RTL كامل',
+
+  'about.title':'نبذة عني',
+  'about.p1':'أعمل على المنتج كاملًا، لا على الواجهة وحدها. في جهة العميل أتولى المعمارية وإدارة الحالة والشبكة ومسار الإصدار. وفي جهة الخادم بنيتُ وأطلقتُ واجهة REST بـ .NET 8 مع PostgreSQL، ومصادقة JWT مع تدوير رموز التحديث، وقنوات SignalR، وتكاملات مع أسواق خارجية.',
+  'about.p2':'ولأنني كتبت نصفَي الميزة نفسها، أصمّم الحدّ الفاصل بينهما عن قصد: ما الذي يملكه الخادم، وما الذي يخزّنه العميل، وكيف يتصرف التطبيق حين تختلف الشبكة معه.',
+  'about.c1t':'معمارية تصمد','about.c1b':'معماريّة نظيفة في شرائح رأسية لكل ميزة، وحدودها محروسة بأدوات لا بالذاكرة.',
+  'about.c2t':'طرفا الاتصال','about.c2b':'كتبتُ خادم تحديث الرموز والمُعترِض الذي يستهلكه في التطبيق، فالعقود مصمَّمة لا مُخمَّنة.',
+  'about.c3t':'الإصدار جزء من العمل','about.c3b':'نكهات بناء، وتوقيع إصدارات، ومسارات Fastlane، وتحديثات لحظية على المنصتين.',
+  'about.c4t':'العربية لغة أولى','about.c4b':'تخطيطات RTL كاملة واتجاه نص لكل عبارة، فيظهر المحتوى المختلط عربيًا وإنجليزيًا كما ينبغي.',
+
+  'skills.title':'المهارات التقنية','skills.sub':'أشياء بنيتُ بها فعلًا، لا أشياء قرأتُ عنها.',
+  'skills.g1':'الموبايل','skills.g2':'الخادم','skills.g3':'البيانات والتخزين','skills.g4':'الإصدار والأدوات','skills.g5':'اللحظي والمراقبة','skills.g6':'التكاملات',
+
+  'high.title':'أبرز الأعمال الهندسية','high.sub':'مشكلات محددة، وما فعلته حيالها.',
+  'high.k1':'أدوات','high.t1':'قواعد معمارية يفحصها المترجم',
+  'high.b1':'مراجعة الكود مكان سيئ لفرض حدود الطبقات، لأن المراجع المُرهَق يفوته استيراد واحد. كتبتُ إضافة أصلية لخادم تحليل Dart بسبع عشرة قاعدة، فصار الاستيراد العابر للوحدات أو اللون الخارج عن نظام التصميم يُفشل أمر dart analyze. تطلّب ذلك حلّ تعارض اعتماديات عجزت عنه حزم الفحص المعتادة: الإضافة تعمل في عزلة مستقلة بنسخة محلل خاصة بها.',
+  'high.k2':'هندسة الإصدار','high.t2':'أداة بناء تُعلن النجاح ولا تشحن شيئًا',
+  'high.b2':'كانت التحديثات اللحظية تُنشر فارغة بينما كل أمر ينتهي بنجاح. السبب أن Gradle اعتبر المهمة محدَّثة، فحُزم الملف الثنائي السابق. ونوع ثانٍ من الفشل جاء من تقليم الأيقونات الذي يعيد كتابة ملف خط لا يستطيع التحديث حمله. كلاهما مُعالَج الآن في مسارات الإصدار على أندرويد و iOS.',
+  'high.k3':'المصادقة من الطرفين','high.t3':'تدوير واحد للرمز لا عشرون',
+  'high.b3':'حين تُطلق الشاشة عدة طلبات معًا وقد انتهت صلاحية الرمز، يُحدّث العميل الساذج مرةً لكل طلب. بنيتُ مُعترِضًا أحادي الرحلة: كل الطلبات الفاشلة تنتظر تحديثًا واحدًا مشتركًا، ثم يُعاد إرسال كل طلب أصلي. وعلى الخادم بنيتُ نقاط الإصدار والتدوير والإبطال المقابلة، فيتفق الطرفان على معنى الجلسة الصالحة.',
+  'high.k4':'التكلفة والأداء','high.t4':'تخزين نداءات مدفوعة، وضبط ميزانية الإطار',
+  'high.b4':'نداءات البحث في الأسواق مدفوعة لكل طلب وبطيئة، لذا تُخزَّن النتائج على الخادم بدل تمريرها مباشرة. وفي التطبيق كانت بطاقة منتج تستهلك نحو 18 مللي ثانية لكل إطار في القصّ المُنعَّم على معالج رسوميات ضعيف، فوق ميزانية 16.7 مللي ثانية. عزلُها في طبقة رسم خاصة أعادها تحت الحد.',
+
+  'exp.title':'الخبرة العملية','exp.present':'الآن',
+  'exp.r1':'مطور Flutter — تطبيقات الموبايل',
+  'exp.p1t':'تطبيق استكشاف ومقارنة للمستهلك',
+  'exp.p1a':'المهندس الوحيد على قاعدة كود Flutter من 46 ألف سطر وعشر وحدات، سُلِّمت على أندرويد و iOS مقابل خلفية .NET/OpenAPI.',
+  'exp.p1b':'صمّمتُ بنية وحدات من خمس طبقات وفرضتُها بإضافة محلل مخصصة، فصارت مخالفة المعمارية تُفشل البناء.',
+  'exp.p1c':'بنيتُ مصادقة الهاتف ورمز التحقق مع مُعترِض تحديث أحادي الرحلة وإعادة إرسال الطلبات.',
+  'exp.p1d':'أضفتُ تحديثات لحظية مدفوعة بالإشعارات: إشعار صامت يُجهّز التحديث ليعمل عند التشغيل التالي.',
+  'exp.p1e':'أطلقتُ 374 نصًا مترجمًا بالعربية والإنجليزية بدعم RTL كامل، مع حلّ الأسماء عند القراءة فلا يحتاج تبديل اللغة إلى إعادة جلب.',
+  'exp.p2s':'— أوامر ومنتجات وعملاء وفروع للمؤسسات',
+  'exp.p2a':'ربطتُ واجهات .NET 8 محميّة بـ JWT و Firebase App Check، مع شاشات حسب الدور تعكس نموذج صلاحيات الخادم.',
+  'exp.p2b':'نفّذتُ تتبّع حالة الطلب لحظيًا عبر SignalR خلف واجهة عميل مجرّدة، مع إعادة اتصال تلقائية ومصافحة مصادقة برمز وصول.',
+  'exp.p2c':'أتمتُّ تسليم النسخ لفريق الاختبار عبر Fastlane و Firebase App Distribution.',
+  'exp.r2':'مطور Full-Stack — عمل حر','exp.r2s':'عمل حر · عن بُعد',
+  'exp.f1':'صمّمتُ وبنيتُ منصّة Saltk كاملة: تطبيق العميل بـ Flutter، ولوحة تحكم سطح مكتب بـ Flutter، وواجهة ASP.NET Core 8 وقاعدة PostgreSQL خلفهما.',
+  'exp.f2':'بنيتُ الواجهة في 24 متحكمًا فوق 27 كيانًا مع ترحيلات EF Core و FluentValidation و AutoMapper ووثيقتَي Swagger، واحدة للموبايل وأخرى للوحة التحكم.',
+  'exp.f3':'سلّمتُ Easy Store، تطبيق مخزون ومحاسبة حلّ محل جداول يدوية في تجارة أقمشة.',
+  'exp.f4':'أدرتُ دورة العميل كاملة وحدي: نموذج البيانات، المعمارية، الواجهة، التطبيق، والتسليم.',
+
+  'proj.title':'المشاريع','proj.sub':'اضغط أي صورة لتكبيرها.','proj.featured':'مميز',
+  'proj.s1r':'مشروع متكامل · تطبيق + واجهة برمجية',
+  'proj.s1d':'منصّة تجارة إلكترونية ودروبشيبنغ تجمع منتجات من علي بابا وأمازون وعلي إكسبريس وشي إن، إلى جانب البائعين المحليين. بنيتُ تطبيق Flutter وواجهة ASP.NET Core: مصادقة JWT مع تدوير الرموز، ودخول بخطوتين ودخول بجوجل، ومسارات الطلب والسلة، والكوبونات، وطبقة تخزين على الخادم أمام نداءات البحث المدفوعة.',
+  'proj.s2r':'Flutter سطح مكتب · عمليات لحظية',
+  'proj.s2d':'الجانب التشغيلي لـ Saltk. تصل الطلبات لحظيًا عبر قنوات SignalR كتبتُها على الخادم واستهلكتُها في العميل، فيرى الموظفون الطلب الجديد دون تحديث الصفحة. تشمل إدارة العملاء والطلبات والكوبونات والتحليلات، والعربية والإنجليزية، وصلاحيات حسب الدور، واختصارات لوحة مفاتيح لمن يعمل عليها طوال اليوم.',
+  'proj.s3badge':'تحت اتفاقية سرية حتى الإطلاق','proj.s3t':'تطبيق استكشاف للمستهلك','proj.s3r':'Flutter · أندرويد و iOS · لم يُطلق بعد',
+  'proj.s3d':'تطبيق ثنائي اللغة أنا مهندسه الوحيد: تصفّح وتصفية وخرائط ومقارنة، فوق خلفية .NET. وفيه تعمل فعليًا إضافة المحلل وخط التحديث اللحظي ومُعترِض تحديث الرموز المذكورة أعلاه. يسعدني شرح المعمارية في مقابلة، أما اسم المنتج فيبقى خاصًا حتى الإطلاق.',
+  'proj.s4r':'Flutter · مخزون ومحاسبة',
+  'proj.s4d':'كانت تجارة أقمشة تتابع المخزون باللون والكمية في جداول يدوية. بنيتُ لهم تطبيقًا متعدد المنصات بمنتقي ألوان، ووحدات بيع وشراء وموردين كاملة، ومحرك محاسبي يغطي الأرباح اليومية والمصروفات والديون، مع مزامنة Firebase ليتابع المالك المخزون خارج المحل.',
+
+  'edu.title':'التعليم','edu.deg':'بكالوريوس تكنولوجيا التعليم — شعبة الحاسب والنظم','edu.uni':'جامعة الزقازيق، الشرقية · 2021 – 2026','edu.det':'التقدير: جيد جدًا. هندسة البرمجيات وقواعد البيانات والخوارزميات.',
+  'cert.title':'الشهادات','cert.name':'تطوير تطبيقات الموبايل','cert.det':'يوليو – سبتمبر 2025 · 90 ساعة تقنية · 30 ساعة عمل حر',
+
+  'srv.title':'خدمات العمل الحر','srv.sub':'متاح لمشاريع إلى جانب عملي بدوام كامل.',
+  'srv.1t':'تطبيقات موبايل','srv.1b':'تطبيقات Flutter لأندرويد و iOS، مبنية لتصمد أمام الصيانة.',
+  'srv.2t':'واجهات REST','srv.2b':'خدمات ASP.NET Core بمصادقة حقيقية وتحقق وترحيلات ووثائق Swagger.',
+  'srv.3t':'لوحات تحكم','srv.3b':'لوحات تشغيل بتحديثات لحظية عبر SignalR وصلاحيات حسب الدور.',
+  'srv.4t':'إعداد الإصدار','srv.4b':'نكهات وتوقيع ومسارات Fastlane وتحديثات لحظية، ليكفّ الإصدار عن كونه حدثًا.',
+  'srv.quote':'«التعامل معاك كان ممتاز، سلّمت التطبيق قبل الميعاد وبجودة عالية. التطبيق شغال بسلاسة وسهل الاستخدام، وأنا مبسوط جدًا من النتيجة.»',
+  'srv.quoteby':'أحمد — صاحب مشروع Easy Store',
+
+  'ct.title':'لنتحدث','ct.sub':'متاح لوظائف Flutter والتطوير المتكامل، وللمشاريع الحرة. أسرع وسيلة للوصول إليّ هي البريد.',
+  'foot.role':'مهندس Flutter · واجهات ASP.NET Core · القاهرة، مصر','foot.rights':'كل الحقوق محفوظة'
+};
+
+function applyLang(lang) {
+  const dict = lang === 'ar' ? I18N_AR : I18N;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] != null) el.textContent = dict[key];
+  });
+  const label = document.getElementById('langLabel');
+  if (label) label.textContent = lang === 'ar' ? 'EN' : 'ع';
+  localStorage.setItem('lang', lang);
+}
+
+/* ------------------------------------------------------------- lightbox */
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+/* ------------------------------------------------------------------ init */
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.feather) feather.replace();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  applyLang(localStorage.getItem('lang') || 'en');
+
+  document.getElementById('langToggle').addEventListener('click', function () {
+    applyLang(document.documentElement.lang === 'ar' ? 'en' : 'ar');
+    if (window.feather) feather.replace();
+  });
+
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    const dark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  });
+
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuToggle.addEventListener('click', function () {
+    const open = mobileMenu.classList.toggle('hidden') === false;
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.add('hidden');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('#desktopMenu a');
+  const spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach(function (l) {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id);
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(function (s) { spy.observe(s); });
+});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamed Hisham Abdelmajid",
+  "jobTitle": "Flutter Engineer",
+  "url": "https://mohamedhisham.dev",
+  "email": "mailto:mohmedhisshm@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG" },
+  "sameAs": [
+    "https://github.com/Mohmed-Hisham",
+    "https://www.linkedin.com/in/mohamed-hisham-1b2993352"
+  ],
+  "knowsAbout": ["Flutter", "Dart", "ASP.NET Core", "C#", "PostgreSQL", "SignalR", "Clean Architecture", "Entity Framework Core"],
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Zagazig University" }
+}
+</script>
+
 </body>
 </html>
